@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="h-100">
 
 <head>
     <!-- 공통 css, js, meta tag -->
     <th:block th:replace="fragments/commonHead"></th:block>
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
     <div class="container">
         <div class="text-center mt-3 pt-3">
             <a class="cs-logo cs-logo-main" th:href="@{/}">우동</a>
@@ -72,11 +72,11 @@
                 </div>
             </nav>
         </div>
-        <h2>기본 레이아웃</h2>
         <!-- page content body 구성 -->
         <th:block layout:fragment="layout.content"></th:block>
-        <!-- 공통 footer -->
-        <th:block th:replace="fragments/commonFooter"></th:block>
+    </div>
+    <!-- 공통 footer -->
+    <th:block th:replace="fragments/commonFooter"></th:block>
 </body>
 
 </html>
