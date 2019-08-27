@@ -17,7 +17,8 @@ CREATE TABLE MEMBER
     `ID`         VARCHAR(45)    NOT NULL    COMMENT '아이디', 
     `AREA_NAME`  VARCHAR(45)    NULL        COMMENT '지역', 
     `TEL`        VARCHAR(45)    NULL        COMMENT '휴대폰번호', 
-    `PASSWORD`   VARCHAR(45)    NULL        COMMENT '비밀번호'
+    `PASSWORD`   VARCHAR(45)    NULL        COMMENT '비밀번호', 
+    `NAME`       VARCHAR(45)    NULL        COMMENT '이름', 
     PRIMARY KEY (ID)
 );
 
@@ -71,7 +72,7 @@ ALTER TABLE CLUB
 -- AREA Table Create SQL
 CREATE TABLE CATEGORY
 (
-    `NUM`   INT            NOT NULL    AUTO_INCREMENT COMMENT '카테고리 번호', 
+    `NUM`   INT            NOT NULL    COMMENT '카테고리 번호', 
     `NAME`  VARCHAR(45)    NULL        COMMENT '카테고리 이름', 
     PRIMARY KEY (NAME)
 );
@@ -82,9 +83,8 @@ ALTER TABLE CATEGORY COMMENT '게시글 카테고리';
 -- AREA Table Create SQL
 CREATE TABLE CLUB_MEMBER
 (
-    `CLUB_NUM`  INT            NOT NULL    AUTO_INCREMENT COMMENT '동아리 번호', 
-    `ID`        VARCHAR(45)    NULL        COMMENT '멤버 아이디', 
-    PRIMARY KEY (CLUB_NUM, ID)
+    `CLUB_NUM`  INT            NOT NULL    COMMENT '동아리 번호', 
+    `ID`        VARCHAR(45)    NULL        COMMENT '멤버 아이디'
 );
 
 ALTER TABLE CLUB_MEMBER
@@ -100,8 +100,7 @@ ALTER TABLE CLUB_MEMBER
 CREATE TABLE MEMBER_INTEREST
 (
     `ID`    VARCHAR(45)    NULL        COMMENT '아이디', 
-    `NAME`  VARCHAR(45)    NULL        COMMENT '분류 이름', 
-    PRIMARY KEY (ID, NAME)
+    `NAME`  VARCHAR(45)    NULL        COMMENT '분류 이름'
 );
 
 ALTER TABLE MEMBER_INTEREST

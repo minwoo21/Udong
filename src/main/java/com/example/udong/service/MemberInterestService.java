@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class MemberInterestService{
 
     @Autowired
-    private MemberInterestRepository repository;
-    
-    @Autowired
     private MemberDao dao;
 
     public Object getMember(Object dataMap){
