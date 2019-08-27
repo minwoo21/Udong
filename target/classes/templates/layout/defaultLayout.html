@@ -8,7 +8,7 @@
 
 <body class="d-flex flex-column h-100">
     <div class="container">
-        <input type="hidden" name="flag" th:value="${flag.flag}">
+        <!-- <input type="hidden" name="flag" th:value="${flag.flag}"> -->
         <div class="text-center mt-3 pt-3">
             <a class="cs-logo cs-logo-main" th:href="@{/}">우동</a>
             <form class="d-inline"> 
@@ -71,8 +71,8 @@
                             <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">검색</button>
                         </form>
                         <!-- <a th:if="${flag.flag}" th:href="@{/login}" class="nav-link mx-3">로그아웃</a> -->
-                        <a th:if="!${flag.flag}" th:href="@{/login}" class="nav-link mx-3">로그인</a>
-                        <a th:if="!${flag.flag}" th:href="@{/signup}" class="nav-link">회원가입</a>
+                        <a  th:href="@{/login}" class="nav-link mx-3">로그인</a>
+                        <a th:href="@{/signup}" class="nav-link">회원가입</a>
                     </ul>
                 </div>
             </nav>

@@ -25,15 +25,12 @@ public class CommunityController {
             // free logic
         } else if ("qna".equals(action)) {
             // qna logic
-        } else if ("post".equals(action)) {
-            // post logic
-        }
+        } 
 
         String viewName = "/community/" + action;
 
         modelandView.setViewName(viewName);
 
-        modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
         return modelandView;
     }
