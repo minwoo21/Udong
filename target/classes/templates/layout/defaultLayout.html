@@ -4,80 +4,93 @@
 <head>
     <!-- 공통 css, js, meta tag -->
     <th:block th:replace="fragments/commonHead"></th:block>
+    <script>
+    </script>
 </head>
 
 <body class="d-flex flex-column h-100">
-    <div class="container">
-        <div class="text-center mt-3 pt-3">
-            <a class="cs-logo cs-logo-main" th:href="@{/}">우동</a>
-            <button class="cs-logo btn" th:href="@{/home}">우리들의 동아리</button>
-            <!-- navbar -->
-            <nav class="navbar navbar-expand-lg">
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between cs-nav" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                동아리
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" th:href="@{/club/location}">지역별 찾기</a>
-                                <a class="dropdown-item" th:href="@{/club/interest}">주제별 찾기</a>
-                                <a class="dropdown-item" th:href="@{/club/ranking}">랭킹</a>
+    <form>
+        <div class="container">
+            <div class="text-center mt-3 pt-3">
+                <a class="cs-logo cs-logo-main" th:href="@{/}">우동</a>
+                <button class="cs-logo btn" th:formaction="@{/home}">우리들의 동아리</button>
+                <!-- navbar -->
+                <nav class="navbar navbar-expand-lg">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between cs-nav" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    동아리
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" th:href="@{/club/location}">지역별 찾기</a>
+                                    <a class="dropdown-item" th:href="@{/club/interest}">주제별 찾기</a>
+                                    <a class="dropdown-item" th:href="@{/club/ranking}">랭킹</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    커뮤니티
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" th:href="@{/community/free}">자유게시판</a>
+                                    <a class="dropdown-item" th:href="@{/community/qna}">질문게시판</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    뉴스
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" th:href="@{/news/notice}">공지사항</a>
+                                    <a class="dropdown-item" th:href="@{/news/event}">이벤트</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    고객지원
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" th:href="@{/support/faq}">FAQ</a>
+                                    <a class="dropdown-item" th:href="@{/support/ask}">1:1 문의</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav">
+                            <form class="form-inline">
+                                <input class="form-control mr-sm-2" type="search" placeholder="동아리 검색"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">검색</button>
+                            </form>
+                            <div th:if="!${flag.flag}">
+                                <input type="submit" th:formaction="@{/login}"
+                                    class="btn btn-outline-dark nav-link mx-3" value="로그인">
+                                <input type="submit" th:formaction="@{/signup}" class="btn btn-outline-dark nav-link"
+                                    value="회원가입">
                             </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                커뮤니티
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" th:href="@{/community/free}">자유게시판</a>
-                                <a class="dropdown-item" th:href="@{/community/qna}">질문게시판</a>
+                            <div th:if="${flag.flag}">
+                                <input type="submit" th:formaction="@{/login}"
+                                    class="btn btn-outline-dark nav-link mx-3" value="로그아웃">
                             </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                뉴스
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" th:href="@{/news/notice}">공지사항</a>
-                                <a class="dropdown-item" th:href="@{/news/event}">이벤트</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                고객지원
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" th:href="@{/support/faq}">FAQ</a>
-                                <a class="dropdown-item" th:href="@{/support/ask}">1:1 문의</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="동아리 검색" aria-label="Search">
-                            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">검색</button>
-                        </form>
-                        <a th:href="@{/login}" class="nav-link mx-3">로그인</a>
-                        <a th:href="@{/signup}" class="nav-link">회원가입</a>
-                    </ul>
-                </div>
-            </nav>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!-- page content body 구성 -->
+            <div class="my-4">
+                <th:block layout:fragment="layout.content"></th:block>
+            </div>
         </div>
-        <!-- page content body 구성 -->
-        <div class="my-4">
-            <th:block layout:fragment="layout.content"></th:block>
-        </div>
-    </div>
+    </form>
     <!-- 공통 footer -->
     <th:block th:replace="fragments/commonFooter"></th:block>
 </body>

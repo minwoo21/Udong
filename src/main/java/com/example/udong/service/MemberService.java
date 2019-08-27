@@ -14,10 +14,15 @@ public class MemberService{
     
     @Autowired
     private MemberDao dao;
-
+    
     public Object getMember(Object dataMap){
         String sqlMapid = "Member.user";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
+        Object resultObject = dao.getList(sqlMapid,dataMap);
+        return resultObject;
+    } 
+    public Object setMember(Object dataMap){
+        String sqlMapid = "Member.signup";
+        Object resultObject = dao.saveObject(sqlMapid,dataMap);
         return resultObject;
     }
 }
