@@ -11,29 +11,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HomeController {
-
-    @RequestMapping(value = { "/home" })
-    public void home_action() {
-    }
+public class CommunityController {
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
-    @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
+    @RequestMapping(value = "/community/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
             ModelAndView modelandView) {
 
         Object resultMap = new HashMap<String, Object>();
 
         // divided depending on action value
-        if ("login".equals(action)) {
-            // login logic
-        } else if ("signup".equals(action)) {
-            // sign up logic
-        } else if ("logout".equals(action)) {
-            // logout logic
+        if ("free".equals(action)) {
+            // free logic
+        } else if ("qna".equals(action)) {
+            // qna logic
+        } else if ("post".equals(action)) {
+            // post logic
         }
 
-        String viewName = action;
+        String viewName = "/community/" + action;
 
         modelandView.setViewName(viewName);
 
