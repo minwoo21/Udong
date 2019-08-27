@@ -19,7 +19,13 @@ public class SupportController {
             ModelAndView modelandView) {
 
         Object resultMap = new HashMap<String, Object>();
+        Map<String, Object> flagMap = new HashMap<String, Object>();
 
+        if (paramMap.get("flag") == null)
+            flagMap.put("flag", false);
+        else{
+            flagMap.put("flag", paramMap.get("flag"));
+        }
         // divided depending on action value
         if ("faq".equals(action)) {
             // notice logic
@@ -33,6 +39,7 @@ public class SupportController {
 
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
+        modelandView.addObject("flag", flagMap);
         return modelandView;
     }
 }

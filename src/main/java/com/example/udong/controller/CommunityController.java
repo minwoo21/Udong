@@ -19,6 +19,13 @@ public class CommunityController {
             ModelAndView modelandView) {
 
         Object resultMap = new HashMap<String, Object>();
+        Map<String, Object> flagMap = new HashMap<String, Object>();
+
+        if (paramMap.get("flag") == null)
+            flagMap.put("flag", false);
+        else{
+            flagMap.put("flag", paramMap.get("flag"));
+        }
 
         // divided depending on action value
         if ("free".equals(action)) {
@@ -32,6 +39,7 @@ public class CommunityController {
         modelandView.setViewName(viewName);
 
         modelandView.addObject("resultMap", resultMap);
+        modelandView.addObject("flag", flagMap);
         return modelandView;
     }
 }
