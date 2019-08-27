@@ -19,27 +19,6 @@ public class HomeController {
     @Autowired
     private MemberService service;
 
-    // @RequestMapping(value = {"/home"})
-    // public ModelAndView home_action(@RequestParam Map<String, Object> param,
-    // ModelAndView modelAndView) {
-    // String viewName ="/home";
-    // Object resultMap = new Object();
-    // Map<String, Object> flagMap = new HashMap<String, Object>();
-    // if(param.size()!=0)
-    // resultMap = service.getMember(param);
-
-    // if(resultMap.equals(null)){
-    // flagMap.put("flag", false);
-    // }
-    // else{
-    // flagMap.put("flag", true);
-    // modelAndView.addObject("resultMap", resultMap);
-    // }
-    // modelAndView.setViewName(viewName);
-    // modelAndView.addObject("flag",flagMap);
-    // return modelAndView;
-    // }
-
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
@@ -47,8 +26,8 @@ public class HomeController {
 
         Object resultMap = new Object();
         Map<String, Object> flagMap = new HashMap<String, Object>();
-
-        flagMap.put("flag", false);
+        if(paramMap.size()==0)
+            flagMap.put("flag", false);
         // divided depending on action value
         if ("login".equals(action)) {
             if (paramMap.size() != 0) {
