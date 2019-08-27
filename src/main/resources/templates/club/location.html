@@ -1,9 +1,25 @@
 <div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
 
     <th:block layout:fragment="layout.content">
-        
-        
+
+        <div class="container myhometown">
+            <h1>지역 찾기</h1>
+            <div class="mt-2">원하시는 지역을 설정해주세요.</div>
+            <form name="search1" class="row mt-3" th:action="@{/home}">
+                <!--도,시지역 검색-->
+                <span class="font-weight-bold">지역선택 : </span>
+                <select class="custom-select col-9" name="sel">
+                    <option>강원도</option>
+                    <option>경기도</option>
+                    <option>서울특별시</option>
+                    <option>부산광역시</option>
+                </select>
+                <button type="submit" class="btn-primary" placeholder="검색"> 
+            </form>
+        </div>
+
+
     </th:block>
 
-   
+
 </div>
