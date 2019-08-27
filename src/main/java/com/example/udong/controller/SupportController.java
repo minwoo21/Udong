@@ -23,7 +23,7 @@ public class SupportController {
         // divided depending on action value
         if ("faq".equals(action)) {
             // notice logic
-        } else if ("inquiry".equals(action)) {
+        } else if ("ask".equals(action)) {
             // event logic
         }
 

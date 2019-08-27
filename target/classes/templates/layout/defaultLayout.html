@@ -10,7 +10,7 @@
     <div class="container">
         <div class="text-center mt-3 pt-3">
             <a class="cs-logo cs-logo-main" th:href="@{/}">우동</a>
-            <a class="cs-logo" th:href="@{/}">우리들의 동아리</a>
+            <button class="cs-logo btn" th:href="@{/home}">우리들의 동아리</button>
             <!-- navbar -->
             <nav class="navbar navbar-expand-lg">
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -67,7 +67,8 @@
                             <input class="form-control mr-sm-2" type="search" placeholder="동아리 검색" aria-label="Search">
                             <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">검색</button>
                         </form>
-                        <a th:href="@{/}" class="nav-link mx-3">로그인</a>
+                        <a th:href="@{/login}" class="nav-link mx-3">로그인</a>
+                        <a th:href="@{/signup}" class="nav-link">회원가입</a>
                     </ul>
                 </div>
             </nav>
