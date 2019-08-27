@@ -36,18 +36,5 @@ public class HomeController {
         modelAndView.addObject("flag",flagMap);
         return modelAndView;
     }
-    // @RequestMapping(value = { "/support/faq" })
-    // public void faq_action(@RequestParam Map<String, Object> param, @PathVariable String action,
-    // ModelAndView modelAndView) {
-    // }
-    // @RequestMapping(value = "/community/{action}")
-    // public String action02(@RequestParam Map<String, Object> param, @PathVariable String action,
-    // ModelAndView modelAndView) {
-    //     String viewName = "/community/";
-    //     if("post".equals(action)){
-    //         viewName += action;
 
-    //     }
-    //     return viewName;
-    // }
 }
