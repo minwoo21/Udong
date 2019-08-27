@@ -18,7 +18,7 @@ public class HomeController {
     }
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
-    @RequestMapping(value = "/home/{action}", method = { RequestMethod.GET, RequestMethod.POST })
+    @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
             ModelAndView modelandView) {
 
@@ -33,7 +33,7 @@ public class HomeController {
             // logout logic
         }
 
-        String viewName = "/home/" + action;
+        String viewName = action;
 
         modelandView.setViewName(viewName);
 
