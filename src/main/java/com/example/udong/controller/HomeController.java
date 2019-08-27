@@ -33,16 +33,21 @@ public class HomeController {
 
         if (paramMap.get("flag") == null)
             flagMap.put("flag", false);
-        else{
+        else {
             flagMap.put("flag", paramMap.get("flag"));
         }
         // divided depending on action value
         if ("login".equals(action)) {
 
         } else if ("signup".equals(action)) {
+
         } else if ("home".equals(action)) {
-            if (paramMap.keySet().contains("submit") && paramMap.get("submit").equals("로그인")) {
-                if (paramMap.get("ID") != "" && paramMap.get("PASSWORD") != "") {
+            if (!paramMap.keySet().contains("submit")) {// home으로 가려할 때
+                viewName = "/home";
+            } 
+            
+            else {
+                if (paramMap.get("submit").equals("로그인")) {  //로그인 창에서 버튼을 눌렀을때
                     resultMap = (Map) service.getMember(paramMap);
                     if (resultMap.size() != 0) {
                         flagMap.put("flag", true);
@@ -52,16 +57,12 @@ public class HomeController {
                         viewName = "/login";
                     }
                 }
-                else{
+                else if(paramMap.get("submit").equals("로그아웃")){
+                    viewName = "/home";
                     flagMap.put("flag", false);
-                    viewName = "/login";
                 }
             }
-            else{   //home으로 가려할 때
-                viewName="/home";
-            }
         }
-
         modelAndView.setViewName(viewName);
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.addObject("flag", flagMap);

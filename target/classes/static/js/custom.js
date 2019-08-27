@@ -11,3 +11,8 @@ function check(form) {
         return true;
     }
 }
+function pswCheck(form){
+    var PASSWORD = form.PASSWORD.value;
+    var C_PASSWORD = form.C_PASSWORD.value;
+    
+}
