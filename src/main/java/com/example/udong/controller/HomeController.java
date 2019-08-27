@@ -19,48 +19,71 @@ public class HomeController {
     @Autowired
     private MemberService service;
 
-    @RequestMapping(value = {"/home"})
-    public ModelAndView home_action(@RequestParam Map<String, Object> param, ModelAndView modelAndView) {
-        String viewName ="/home";
-        Object resultMap = new Object();
-        Map<String, Object> flagMap = new HashMap<String, Object>();
-        if(param.size()!=0)
-            resultMap = service.getMember(param);
+    // @RequestMapping(value = {"/home"})
+    // public ModelAndView home_action(@RequestParam Map<String, Object> param,
+    // ModelAndView modelAndView) {
+    // String viewName ="/home";
+    // Object resultMap = new Object();
+    // Map<String, Object> flagMap = new HashMap<String, Object>();
+    // if(param.size()!=0)
+    // resultMap = service.getMember(param);
 
-        if(resultMap.equals(null)){
-            flagMap.put("flag", false);
-        }
-        else{
-            flagMap.put("flag", true);
-            modelAndView.addObject("resultMap", resultMap);
-        }
-        modelAndView.setViewName(viewName);
-        modelAndView.addObject("flag",flagMap);
-        return modelAndView;
-    }
+    // if(resultMap.equals(null)){
+    // flagMap.put("flag", false);
+    // }
+    // else{
+    // flagMap.put("flag", true);
+    // modelAndView.addObject("resultMap", resultMap);
+    // }
+    // modelAndView.setViewName(viewName);
+    // modelAndView.addObject("flag",flagMap);
+    // return modelAndView;
+    // }
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
-            ModelAndView modelandView) {
+            ModelAndView modelAndView) {
 
-        Object resultMap = new HashMap<String, Object>();
+        Object resultMap = new Object();
+        Map<String, Object> flagMap = new HashMap<String, Object>();
 
+        flagMap.put("flag", false);
         // divided depending on action value
         if ("login".equals(action)) {
-            // login logic
+            if (paramMap.size() != 0) {
+                resultMap = service.getMember(paramMap);
+                if (!resultMap.equals(null)) {
+                    flagMap.put("flag", true);
+                    modelAndView.addObject("resultMap", resultMap);
+                } else {
+                    flagMap.put("flag", false);
+                }
+            }
+            else{
+            }
         } else if ("signup".equals(action)) {
             // sign up logic
-        } else if ("logout".equals(action)) {
-            // logout logic
+            // if(paramMap.size()!=0){
+            // resultMap = service.setMember(paramMap);
+            // flagMap.put("flag", true);
+            // }
+            // if(resultMap.equals(null)){
+            // flagMap.put("flag", false);
+            // }
+            // else{
+            // flagMap.put("flag", true);
+            // modelAndView.addObject("resultMap", resultMap);
+            // }
+        } else if ("home".equals(action)) {
+
         }
 
         String viewName = action;
 
-        modelandView.setViewName(viewName);
-
-        modelandView.addObject("paramMap", paramMap);
-        modelandView.addObject("resultMap", resultMap);
-        return modelandView;
+        modelAndView.setViewName(viewName);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.addObject("flag", flagMap);
+        return modelAndView;
     }
 }
