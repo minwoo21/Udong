@@ -18,13 +18,14 @@ public class HomeController {
     @Autowired
     private MemberService service;
 
-    @RequestMapping(value = "/home")
-    public ModelAndView home_action(@RequestParam Map<String, Object> param, @PathVariable String action,
-    ModelAndView modelAndView) {
+    @RequestMapping(value = {"/home"})
+    public ModelAndView home_action(@RequestParam Map<String, Object> param, ModelAndView modelAndView) {
         String viewName ="/home";
         Object resultMap = new Object();
         Map<String, Object> flagMap = new HashMap<String, Object>();
-        resultMap = service.getMember(param);
+        if(param.size()!=0)
+            resultMap = service.getMember(param);
+
         if(resultMap.equals(null)){
             flagMap.put("flag", false);
         }
