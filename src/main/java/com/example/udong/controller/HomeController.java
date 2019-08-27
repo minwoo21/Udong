@@ -48,7 +48,10 @@ public class HomeController {
         Object resultMap = new Object();
         Map<String, Object> flagMap = new HashMap<String, Object>();
 
-        flagMap.put("flag", false);
+        if (paramMap.get("flag") == null) {
+            flagMap.put("flag", false);
+        }
+
         // divided depending on action value
         if ("login".equals(action)) {
             if (paramMap.size() != 0) {
@@ -59,8 +62,7 @@ public class HomeController {
                 } else {
                     flagMap.put("flag", false);
                 }
-            }
-            else{
+            } else {
             }
         } else if ("signup".equals(action)) {
             // sign up logic
