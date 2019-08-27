@@ -9,7 +9,7 @@
 	    select * from MEMBER
 		where ID = #{ID} and PASSWORD = #{PASSWORD};
     </select>
-<!-- 
+
 	<insert id="merge" parameterType="Map">
 	</insert>
 
@@ -20,5 +20,5 @@
 	</update>
 
 	<delete id="delete" parameterType="Map">
-	</delete> -->
+	</delete>
 </mapper>
