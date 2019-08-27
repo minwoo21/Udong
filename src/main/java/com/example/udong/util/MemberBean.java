@@ -15,21 +15,12 @@ public class MemberBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
-<<<<<<< HEAD
-    private String ID;
-    private String NAME;
-    private String AREA_NAME;
-    private String TEL;
-    private String PASSWORD;
-    private String Name;
-=======
     String ID;
     String NAME;
     String AREA_NAME;
     String TEL;
     String PASSWORD;
 
->>>>>>> c4917fb28bb1a21c336d7e0ded8557ed03a8cdbf
 
     public MemberBean() {
     }
