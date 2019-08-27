@@ -10,8 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Member")
+@Table(name="MEMBER")
 public class MemberBean implements Serializable{
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
     String ID;
@@ -19,18 +20,17 @@ public class MemberBean implements Serializable{
     String AREA_NAME;
     String TEL;
     String PASSWORD;
-    String Name;
+
 
     public MemberBean() {
     }
 
-    public MemberBean(String ID, String NAME, String AREA_NAME, String TEL, String PASSWORD, String Name) {
+    public MemberBean(String ID, String NAME, String AREA_NAME, String TEL, String PASSWORD) {
         this.ID = ID;
         this.NAME = NAME;
         this.AREA_NAME = AREA_NAME;
         this.TEL = TEL;
         this.PASSWORD = PASSWORD;
-        this.Name = Name;
     }
 
     public String getID() {
@@ -73,13 +73,6 @@ public class MemberBean implements Serializable{
         this.PASSWORD = PASSWORD;
     }
 
-    public String getName() {
-        return this.Name;
-    }
-
-    public void setName(String Name) {
-        this.Name = Name;
-    }
 
     public MemberBean ID(String ID) {
         this.ID = ID;
@@ -106,11 +99,6 @@ public class MemberBean implements Serializable{
         return this;
     }
 
-    public MemberBean Name(String Name) {
-        this.Name = Name;
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -119,12 +107,12 @@ public class MemberBean implements Serializable{
             return false;
         }
         MemberBean memberBean = (MemberBean) o;
-        return Objects.equals(ID, memberBean.ID) && Objects.equals(NAME, memberBean.NAME) && Objects.equals(AREA_NAME, memberBean.AREA_NAME) && Objects.equals(TEL, memberBean.TEL) && Objects.equals(PASSWORD, memberBean.PASSWORD) && Objects.equals(Name, memberBean.Name);
+        return Objects.equals(ID, memberBean.ID) && Objects.equals(NAME, memberBean.NAME) && Objects.equals(AREA_NAME, memberBean.AREA_NAME) && Objects.equals(TEL, memberBean.TEL) && Objects.equals(PASSWORD, memberBean.PASSWORD);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, NAME, AREA_NAME, TEL, PASSWORD, Name);
+        return Objects.hash(ID, NAME, AREA_NAME, TEL, PASSWORD);
     }
 
     @Override
@@ -135,7 +123,6 @@ public class MemberBean implements Serializable{
             ", AREA_NAME='" + getAREA_NAME() + "'" +
             ", TEL='" + getTEL() + "'" +
             ", PASSWORD='" + getPASSWORD() + "'" +
-            ", Name='" + getName() + "'" +
             "}";
     }
 
