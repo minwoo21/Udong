@@ -1,6 +1,5 @@
 package com.example.udong.service;
 
-import com.example.udong.util.MemberBean;
 import com.example.udong.util.MemberDao;
 
 import org.springframework.stereotype.Service;
