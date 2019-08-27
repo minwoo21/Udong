@@ -14,12 +14,12 @@ import javax.persistence.Table;
 public class MemberBean implements Serializable{
     @Id
     @GeneratedValue
-    String ID;
-    String NAME;
-    String AREA_NAME;
-    String TEL;
-    String PASSWORD;
-    String Name;
+    private String ID;
+    private String NAME;
+    private String AREA_NAME;
+    private String TEL;
+    private String PASSWORD;
+    private String Name;
 
     public MemberBean() {
     }
