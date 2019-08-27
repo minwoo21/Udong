@@ -14,8 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
     @RequestMapping(value = { "/home" })
-    public void action() {
+    public void home_action() {
     }
+
+    @RequestMapping(value = { "/support/faq" })
+    public void faq_action() {
+    }
+
+    @RequestMapping(value = "/community/{action}")
+    public String action02( @PathVariable String action) {
+        String viewName = "/community/";
+        if("post".equals(action)){
+            viewName += action;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
