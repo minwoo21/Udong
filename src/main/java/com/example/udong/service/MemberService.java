@@ -1,5 +1,7 @@
 package com.example.udong.service;
 
+import java.util.HashMap;
+
 import com.example.udong.repository.MemberRepository;
 import com.example.udong.util.MemberDao;
 
@@ -25,4 +27,15 @@ public class MemberService{
         Object resultObject = dao.saveObject(sqlMapid,dataMap);
         return resultObject;
     }
+
+    public Object getList(Object dataMap) {
+		String sqlMapId = "Member.list";
+
+		Object resultObject = new HashMap<>();
+		// ((Map<String, Object>) resultObject).put("resultList", dao.getList(sqlMapId,
+		// dataMap));
+		((Map<String, Object>) resultObject).put("resultList", repository.findAll());
+
+		return resultObject;
+	}
 }
