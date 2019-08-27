@@ -17,8 +17,7 @@ CREATE TABLE MEMBER
     `ID`         VARCHAR(45)    NOT NULL    COMMENT '아이디', 
     `AREA_NAME`  VARCHAR(45)    NULL        COMMENT '지역', 
     `TEL`        VARCHAR(45)    NULL        COMMENT '휴대폰번호', 
-    `PASSWORD`   VARCHAR(45)    NULL        COMMENT '비밀번호', 
-    `Name`   VARCHAR(45)    NULL        COMMENT '이름'
+    `PASSWORD`   VARCHAR(45)    NULL        COMMENT '비밀번호'
     PRIMARY KEY (ID)
 );
 
