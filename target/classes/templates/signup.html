@@ -1,0 +1,94 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+
+    <th:block layout:fragment="layout.content">
+
+        <div class="container my-5">
+            <form action="/b/submit">
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="card-header font-weight-bold">Information</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="font-weight-bold">
+                                        Name
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control col" name="firstname" placeholder="성">
+                                        <input type="text" class="form-control col" name="surname" placeholder="이름">
+                                    </div>
+                                </div>
+                                <label class="font-weight-bold">E-mail</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
+                                    </div>
+                                    <input type="email" class="form-control" placeholder="Enter your E-mail address"
+                                        name="email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold">
+                                    Password
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span class="fas fa-lock"></span></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Enter password" name="pwd">
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><span class="fas fa-lock"></span></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Confirm password"
+                                        name="pwdcf">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header font-weight-bold">Information</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="tel" class="font-weight-bold">
+                                    Phone Number
+                                </label>
+                                <input type="tel" class="form-control col" name="tel"
+                                    placeholder="Enter your mobile phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="select" class="font-weight-bold">Gender</label>
+                                <select class="custom-select" name="gender">
+                                    <option value="m">남</option>
+                                    <option value="f">여</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="select" class="font-weight-bold">Hobby</label>
+                                <select class="custom-select col-12" name="sel">
+                                    <option>취미1</option>
+                                    <option>취미2</option>
+                                    <option>취미3</option>
+                                    <option>취미4</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-9"></div>
+                    <div class="col-3">
+                        <button class="submit m-3 text-right">
+                            가입하기
+                        </button>
+                    </div>
+                </div>
+        </div>
+        </form>
+</div>
+
+</th:block>
+
+
+</div>
