@@ -10,8 +10,14 @@ public class HomeController {
     @RequestMapping(value = { "/home" })
     public void home_action() {
     }
-    @RequestMapping(value = { "/support/faq" })
-    public void faq_action() {
+    @RequestMapping(value = { "/support/{action}" })
+    public String support_action( @PathVariable String action ) {
+        String viewName = "/support/";
+        if("faq".equals(action)){
+            viewName += action;
+
+        }
+        return viewName;
     }
     @RequestMapping(value = "/community/{action}")
     public String action02( @PathVariable String action) {
