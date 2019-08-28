@@ -25,3 +25,19 @@
 	</delete>
 </mapper>
 
+<!-- <mapper namespace="Faq">
+	<select id="list" resultType="Map" parameterType="Map">
+	    select TITLE, CONTENT
+		from FAQ
+		where NUM = #{NUM};
+    </select>
+
+	<insert id="insert" parameterType="Map">
+	</insert>
+
+	<update id="update" parameterType="Map">
+	</update>
+
+	<delete id="delete" parameterType="Map">
+	</delete>
+</mapper> -->

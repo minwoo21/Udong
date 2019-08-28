@@ -17,7 +17,7 @@ public class FaqService{
     private MemberDao dao;
 
     public Object getMember(Object dataMap){
-        String sqlMapid = "Faq.user";
+        String sqlMapid = "Faq.list";
         Object resultObject = dao.getObject(sqlMapid,dataMap);
         return resultObject;
     }
