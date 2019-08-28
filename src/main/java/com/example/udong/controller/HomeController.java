@@ -13,54 +13,59 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import antlr.collections.List;
+
 @Controller
 public class HomeController {
 
     @Autowired
     private MemberService service;
 
-    @RequestMapping(value = {"/home"})
-    public ModelAndView home_action(@RequestParam Map<String, Object> param, ModelAndView modelAndView) {
-        String viewName ="/home";
-        Object resultMap = new Object();
-        Map<String, Object> flagMap = new HashMap<String, Object>();
-        if(param.size()!=0)
-            resultMap = service.getMember(param);
-
-        if(resultMap.equals(null)){
-            flagMap.put("flag", false);
-        }
-        else{
-            flagMap.put("flag", true);
-            modelAndView.addObject("resultMap", resultMap);
-        }
-        modelAndView.setViewName(viewName);
-        modelAndView.addObject("flag",flagMap);
-        return modelAndView;
-    }
-
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
-            ModelAndView modelandView) {
+            ModelAndView modelAndView) {
 
-        Object resultMap = new HashMap<String, Object>();
-
-        // divided depending on action value
-        if ("login".equals(action)) {
-            // login logic
-        } else if ("signup".equals(action)) {
-            // sign up logic
-        } else if ("logout".equals(action)) {
-            // logout logic
-        }
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        Map<String, Object> flagMap = new HashMap<String, Object>();
 
         String viewName = action;
 
-        modelandView.setViewName(viewName);
+        if (paramMap.get("flag") == null)
+            flagMap.put("flag", false);
+        else {
+            flagMap.put("flag", paramMap.get("flag"));
+        }
+        // divided depending on action value
+        if ("login".equals(action)) {
 
-        modelandView.addObject("paramMap", paramMap);
-        modelandView.addObject("resultMap", resultMap);
-        return modelandView;
+        } else if ("signup".equals(action)) {
+
+        } else if ("home".equals(action)) {
+            if (!paramMap.keySet().contains("submit")) {// home으로 가려할 때
+                viewName = "/home";
+            } 
+            
+            else {
+                if (paramMap.get("submit").equals("로그인")) {  //로그인 창에서 버튼을 눌렀을때
+                    resultMap = (Map) service.getMember(paramMap);
+                    if (resultMap.size() != 0) {
+                        flagMap.put("flag", true);
+                        modelAndView.addObject("resultMap", resultMap);
+                    } else {
+                        flagMap.put("flag", false);
+                        viewName = "/login";
+                    }
+                }
+                else if(paramMap.get("submit").equals("로그아웃")){
+                    viewName = "/home";
+                    flagMap.put("flag", false);
+                }
+            }
+        }
+        modelAndView.setViewName(viewName);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.addObject("flag", flagMap);
+        return modelAndView;
     }
 }

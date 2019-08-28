@@ -19,22 +19,27 @@ public class CommunityController {
             ModelAndView modelandView) {
 
         Object resultMap = new HashMap<String, Object>();
+        Map<String, Object> flagMap = new HashMap<String, Object>();
+
+        if (paramMap.get("flag") == null)
+            flagMap.put("flag", false);
+        else{
+            flagMap.put("flag", paramMap.get("flag"));
+        }
 
         // divided depending on action value
         if ("free".equals(action)) {
             // free logic
         } else if ("qna".equals(action)) {
             // qna logic
-        } else if ("post".equals(action)) {
-            // post logic
-        }
+        } 
 
         String viewName = "/community/" + action;
 
         modelandView.setViewName(viewName);
 
-        modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
+        modelandView.addObject("flag", flagMap);
         return modelandView;
     }
 }
