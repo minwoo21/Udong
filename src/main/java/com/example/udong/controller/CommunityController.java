@@ -23,7 +23,7 @@ public class CommunityController {
 
         if (paramMap.get("flag") == null)
             flagMap.put("flag", false);
-        else{
+        else {
             flagMap.put("flag", paramMap.get("flag"));
         }
 
@@ -32,7 +32,7 @@ public class CommunityController {
             // free logic
         } else if ("qna".equals(action)) {
             // qna logic
-        } 
+        }
 
         String viewName = "/community/" + action;
 
