@@ -62,6 +62,8 @@ public class HomeController {
                     flagMap.put("flag", false);
                 }
             }
+        }else if("post".equals(action)){
+            
         }
         modelAndView.setViewName(viewName);
         modelAndView.addObject("resultMap", resultMap);
