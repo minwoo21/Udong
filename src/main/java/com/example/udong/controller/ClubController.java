@@ -33,7 +33,9 @@ public class ClubController {
             // interest up logic
         } else if ("ranking".equals(action)) {
             // ranking logic
-        }
+        } else if("introduce".equals(action)){
+
+        } else if("clubBoard".equals(action)){}
 
         String viewName = "/club/" + action;
 
