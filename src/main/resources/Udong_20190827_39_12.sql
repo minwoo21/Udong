@@ -17,6 +17,7 @@ CREATE TABLE CLUB
 ALTER TABLE CLUB COMMENT '동아리';
 
 
+
 -- CLUB Table Create SQL
 CREATE TABLE MEMBER
 (
@@ -86,6 +87,7 @@ CREATE TABLE BOARD
     `TITLE`     VARCHAR(45)    NULL        COMMENT '제목', 
     `CONTENT`   VARCHAR(45)    NULL        COMMENT '내용', 
     `ID`        VARCHAR(45)    NULL        COMMENT '작성자', 
+    `RECOMMEND`   INT    NULL        COMMENT '추천' 
     PRIMARY KEY (POSTNUM)
 );
 
