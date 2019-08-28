@@ -3,6 +3,7 @@ package com.example.udong.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.udong.service.InterestCategoryService;
 import com.example.udong.service.MemberService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,16 @@ public class HomeController {
     @Autowired
     private MemberService service;
 
+    @Autowired
+    private InterestCategoryService interestService;
+
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
             ModelAndView modelAndView) {
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
+        Object resultList = new Object();
         Map<String, Object> flagMap = new HashMap<String, Object>();
 
         String viewName = action;
@@ -40,6 +45,8 @@ public class HomeController {
         if ("login".equals(action)) {
 
         } else if ("signup".equals(action)) {
+            resultList = interestService.getList(paramMap);
+            modelAndView.addObject("resultList", resultList);
 
         } else if ("home".equals(action)) {
             if (!paramMap.keySet().contains("submit")) {// home으로 가려할 때
@@ -63,7 +70,7 @@ public class HomeController {
                 }
             }
         }else if("post".equals(action)){
-            
+
         }
         modelAndView.setViewName(viewName);
         modelAndView.addObject("resultMap", resultMap);

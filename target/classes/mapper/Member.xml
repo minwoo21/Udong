@@ -9,6 +9,9 @@
 	    select * from MEMBER
 		where ID = #{ID};
     </select>
+	<select id="interest" resultType="Map" parameterType="Map">
+	    select * from INTEREST_CATEGORY;
+    </select>
 
 	<insert id="signup" parameterType="Map">
 		insert into MEMBER(ID,Name,Area_Name, Tel, Password)
