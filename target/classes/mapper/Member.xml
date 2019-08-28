@@ -12,7 +12,7 @@
 
 	<insert id="signup" parameterType="Map">
 		insert into MEMBER(ID,Name,Area_Name, Tel, Password)
-		values (#{ID},#{NAME},#{AREA_NAMEE},#{TEL},#{PASSWORD})
+		values (#{ID},#{NAME},#{AREA_NAME},#{TEL},#{PASSWORD})
 	</insert>
 
 	<insert id="insert" parameterType="Map">
@@ -25,5 +25,3 @@
 	</delete>
 </mapper>
 
-<mapper namespace= "Faq">
-</mapper>
