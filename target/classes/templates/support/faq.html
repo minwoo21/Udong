@@ -2,70 +2,48 @@
 
     <th:block layout:fragment="layout.content">
 
-    <div class="text-center mt-3 p-5">
-        <p class="cs-logo cs-logo-main">FAQ</p>
-    </div>
-
-    <div class="accordion" id="accordionExample">
+        <div class="text-center mt-3 p-5">
+            <p class="cs-logo cs-logo-main">FAQ</p>
+        </div>
+        <!-- th:each="resultData: ${resultMap.resultList}" -->
+        <div class="accordion" id="accordionExample" th:each="resultData: ${resultMap.resultList}" >
             <div class="card">
                 <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne">
-                            Q1.
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-controls="collapse" th:text="${resultData.TITLE}">
+
                         </button>
-                    </h2>
+                    </h5>
                 </div>
 
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                     data-parent="#accordionExample">
-                    <div class="card-body">
-                        어쩌구
+                    <div class="card-body" th:text="${resultData.CONTENT}">
+
                     </div>
                 </div>
             </div>
-            <div class="card">
+
+            <!-- <div class="card">
                 <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo">
-                            Q2.
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-controls="collapse" th:text="${resultData.TITLE}">
+
                         </button>
-                    </h2>
+                    </h5>
                 </div>
+
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                        저쩌구
+                    <div class="card-body" th:text="${resultData.CONTENT}">
+
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree">
-                            Q3.
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div class="card-body">
-                        이러쿵
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header" id="headingFour">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree">
-                            Q4.
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div class="card-body">
-                        저러쿵
-                    </div>
-                </div>
-            </div>
+            </div> -->
         </div>
+
+        
 
     </th:block>
 
