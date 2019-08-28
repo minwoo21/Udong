@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class InterestCategoryBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
-    //@GeneratedValue
+    @GeneratedValue
     Integer NUM;
     String NAME;
 

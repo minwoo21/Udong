@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class AreaBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
-    //@GeneratedValue
+    @GeneratedValue
     String AREA_NUM;
     String AREA_NAME;
 

@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.PrimaryKeyJoinColumns;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +14,8 @@ import javax.persistence.Table;
 public class MemberInterestBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer NUM;
     String ID;
     String NAME;
 
@@ -24,9 +23,18 @@ public class MemberInterestBean implements Serializable{
     public MemberInterestBean() {
     }
 
-    public MemberInterestBean(String ID, String NAME) {
+    public MemberInterestBean(Integer NUM, String ID, String NAME) {
+        this.NUM = NUM;
         this.ID = ID;
         this.NAME = NAME;
+    }
+
+    public Integer getNUM() {
+        return this.NUM;
+    }
+
+    public void setNUM(Integer NUM) {
+        this.NUM = NUM;
     }
 
     public String getID() {
@@ -43,6 +51,11 @@ public class MemberInterestBean implements Serializable{
 
     public void setNAME(String NAME) {
         this.NAME = NAME;
+    }
+
+    public MemberInterestBean NUM(Integer NUM) {
+        this.NUM = NUM;
+        return this;
     }
 
     public MemberInterestBean ID(String ID) {
@@ -63,20 +76,22 @@ public class MemberInterestBean implements Serializable{
             return false;
         }
         MemberInterestBean memberInterestBean = (MemberInterestBean) o;
-        return Objects.equals(ID, memberInterestBean.ID) && Objects.equals(NAME, memberInterestBean.NAME);
+        return Objects.equals(NUM, memberInterestBean.NUM) && Objects.equals(ID, memberInterestBean.ID) && Objects.equals(NAME, memberInterestBean.NAME);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, NAME);
+        return Objects.hash(NUM, ID, NAME);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " ID='" + getID() + "'" +
+            " NUM='" + getNUM() + "'" +
+            ", ID='" + getID() + "'" +
             ", NAME='" + getNAME() + "'" +
             "}";
     }
+
 
 }

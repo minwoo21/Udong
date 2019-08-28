@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +14,8 @@ import javax.persistence.Table;
 public class ClubMemberBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer NUM;
     Integer CLUB_NUM;
     String ID;
 
@@ -23,9 +23,18 @@ public class ClubMemberBean implements Serializable{
     public ClubMemberBean() {
     }
 
-    public ClubMemberBean(Integer CLUB_NUM, String ID) {
+    public ClubMemberBean(Integer NUM, Integer CLUB_NUM, String ID) {
+        this.NUM = NUM;
         this.CLUB_NUM = CLUB_NUM;
         this.ID = ID;
+    }
+
+    public Integer getNUM() {
+        return this.NUM;
+    }
+
+    public void setNUM(Integer NUM) {
+        this.NUM = NUM;
     }
 
     public Integer getCLUB_NUM() {
@@ -42,6 +51,11 @@ public class ClubMemberBean implements Serializable{
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public ClubMemberBean NUM(Integer NUM) {
+        this.NUM = NUM;
+        return this;
     }
 
     public ClubMemberBean CLUB_NUM(Integer CLUB_NUM) {
@@ -62,20 +76,21 @@ public class ClubMemberBean implements Serializable{
             return false;
         }
         ClubMemberBean clubMemberBean = (ClubMemberBean) o;
-        return Objects.equals(CLUB_NUM, clubMemberBean.CLUB_NUM) && Objects.equals(ID, clubMemberBean.ID);
+        return Objects.equals(NUM, clubMemberBean.NUM) && Objects.equals(CLUB_NUM, clubMemberBean.CLUB_NUM) && Objects.equals(ID, clubMemberBean.ID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(CLUB_NUM, ID);
+        return Objects.hash(NUM, CLUB_NUM, ID);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " CLUB_NUM='" + getCLUB_NUM() + "'" +
+            " NUM='" + getNUM() + "'" +
+            ", CLUB_NUM='" + getCLUB_NUM() + "'" +
             ", ID='" + getID() + "'" +
             "}";
     }
-    
+
 }

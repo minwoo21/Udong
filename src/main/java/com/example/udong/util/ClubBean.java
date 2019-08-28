@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class ClubBean implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     Integer CLUB_NUM;
     String CLUB_NAME;
     String INTRO;
