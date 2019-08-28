@@ -24,3 +24,6 @@
 	<delete id="delete" parameterType="Map">
 	</delete>
 </mapper>
+
+<mapper namespace= "Faq">
+</mapper>
