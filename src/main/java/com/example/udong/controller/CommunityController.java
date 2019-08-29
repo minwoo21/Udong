@@ -31,7 +31,7 @@ public class CommunityController {
 
         if (paramMap.get("flag") == null)
             flagMap.put("flag", false);
-        else{
+        else {
             flagMap.put("flag", paramMap.get("flag"));
         }
         Map<String, Object> idMap = new HashMap<String, Object>();
@@ -50,7 +50,7 @@ public class CommunityController {
             resultList = boardservice.getPost(category);
         } else if ("qna".equals(action)) {
             // qna logic
-        } 
+        }
 
         String viewName = "/community/" + action;
 
