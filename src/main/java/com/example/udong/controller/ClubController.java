@@ -39,6 +39,7 @@ public class ClubController {
             // interest up logic
         } else if ("ranking".equals(action)) {
             // ranking logic
+            resultMap = service.get(paramMap);
         } else if ("introduce".equals(action)) {
 
         } else if ("clubBoard".equals(action)) {
