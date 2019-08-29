@@ -22,27 +22,19 @@
 			, TITLE
 			, CONTENT
 			, EMAIL
+            , TIME
 		)
 		values(
 			#{ID}
 			, #{TITLE}
 			, #{CONTENT}
 			, #{EMAIL}
+            , NOW()
 		)
 	</insert>
 
 	<update id="update" parameterType="Map">
-        UPDATE QNA
-        SET ID = #{ID}
-            , TITLE = #{TITLE}
-            , CONTENT = #{CONTENT}
-            , EMAIL = #{EMAIL}
-        values(
-			#{ID}
-			, #{TITLE}
-			, #{CONTENT}
-			, #{EMAIL}
-		)
+
 	</update>
 
 	<delete id="delete" parameterType="Map">

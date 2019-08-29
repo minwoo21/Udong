@@ -35,33 +35,39 @@ public class QnaService{
         return resultObject;
     }
 
-    public Object saveObject(Map<String, Object> dataMap) {
-      String uniqueSequence = (String) dataMap.get("NUM");
+    // public Object saveObject(Map<String, Object> dataMap) {
+    //   String uniqueSequence = (String) dataMap.get("NUM");
   
-      // if ("".equals(uniqueSequence)) {
-      //   uniqueSequence = commonUtil.getUniqueSequence();
-      // }
-      dataMap.put("NUM", uniqueSequence);
+    //   // if ("".equals(uniqueSequence)) {
+    //   //   uniqueSequence = commonUtil.getUniqueSequence();
+    //   // }
+    //   dataMap.put("NUM", uniqueSequence);
   
-      String sqlMapId = "Answer.insert";
+    //   String sqlMapId = "Answer.insert";
   
-      Integer resultKey = (Integer) dao.saveObject(sqlMapId, dataMap);
+    //   Integer resultKey = (Integer) dao.saveObject(sqlMapId, dataMap);
   
-      Object resultObject = this.getObject(dataMap);
+    //   Object resultObject = this.getObject(dataMap);
   
-      return resultObject;
-    }
+    //   return resultObject;
+    // }
 
-    public Object updateObject(Map<String, Object> dataMap) {
-      String sqlMapId = "Answer.update";
-  
-      Integer resultKey = (Integer) dao.saveObject(sqlMapId, dataMap);
-  
-      Object resultObject = this.getObject(dataMap);
-  
+    public Object setObject(Object dataMap){
+      String sqlMapid = "Answer.insert";
+      Object resultObject = dao.saveObject(sqlMapid,dataMap);
       return resultObject;
+  }
+
+    // public Object updateObject(Map<String, Object> dataMap) {
+    //   String sqlMapId = "Answer.update";
   
-    }
+    //   Integer resultKey = (Integer) dao.saveObject(sqlMapId, dataMap);
+  
+    //   Object resultObject = this.getObject(dataMap);
+  
+    //   return resultObject;
+  
+    // }
   
     public Object deleteObject(Object dataMap) {
       String sqlMapId = "Answer.delete";

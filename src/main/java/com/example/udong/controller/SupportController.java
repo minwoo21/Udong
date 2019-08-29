@@ -41,10 +41,7 @@ public class SupportController {
             resultMap = faq_service.getList(paramMap);
         } else if ("ask".equals(action)) {
         } else if ("insert".equals(action)) {
-			resultMap = qna_service.saveObject(paramMap);
-            action = "ask";
-        } else if ("update".equals(action)) {
-			resultMap = qna_service.updateObject(paramMap);
+			resultMap = qna_service.setObject(paramMap);
             action = "ask";
         }
 
