@@ -56,6 +56,11 @@ public class CommunityController {
                     // 검색 기능
                     paramMap.put("CATEGORY", "free");
                     resultList = boardservice.getSearchPost(paramMap);
+                }else if(submitValue.equals("삭제")) {
+                    // 삭제 기능
+                    paramMap.put("CATEGORY", "free");
+                    boardservice.deletePost(paramMap);
+                    resultList = boardservice.getPost(paramMap);
                 }
             }
         } else if ("qna".equals(action)) {

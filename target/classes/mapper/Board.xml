@@ -16,7 +16,7 @@
     </select>
 	<select id="searchPost" resultType="Map" parameterType="Map">
 	    select * from BOARD
-		where TITLE like CONCAT('%',#{search},'%') and CATEGORY like #{CATEGORY};
+		where TITLE like CONCAT('%',#{search},'%') and CATEGORY = #{CATEGORY};
     </select>
 <!-- 
 	<insert id="signup" parameterType="Map">
@@ -30,6 +30,8 @@
 	<update id="update" parameterType="Map">
 	</update>
 
-	<delete id="delete" parameterType="Map">
+	<delete id="deletePost" parameterType="Map">
+		delete from BOARD
+		where CATEGORY = #{CATEGORY} and POSTNUM=#{POSTNUM};
 	</delete>
 </mapper>

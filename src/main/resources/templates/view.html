@@ -9,19 +9,29 @@
                 th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">
                 <th:block th:replace="fragments/newsNav"></th:block>
             </div>
-            
+
             <!--글 읽기 페이지-->
             <div class="col-lg-8 col-sm-12 col-md-12">
                 <div class="row border rounded p-3 m-2 justify-content-between">
-                    <div class="col-6" th:text="${resultMap.TITLE}"></div>
+                    <div class="col-1" th:text="${resultMap.POSTNUM}"></div>
+                    <div class="col-4" th:text="${resultMap.TITLE}"></div>
                     <div class="col-6 text-right" th:text="${resultMap.TIME}"></div>
                 </div>
                 <div class="border rounded p-3 m-2">
                     <p th:text="${resultMap.CONTENT}"></p>
                 </div>
                 <div class="justify-content-end row m-3">
-                    <input th:if="${resultMap.ID==idMap.ID}" type="submit" value="수정" class="btn btn-outline-secondary m-1">
-                    <input th:if="${resultMap.ID==idMap.ID}" type="submit" value="삭제" class="btn btn-outline-secondary m-1">
+                    <input th:if="${resultMap.ID==idMap.ID}" name="submit" type="submit" value="수정"
+                        class="btn btn-outline-secondary m-1">
+                    <!--삭제 버튼-->
+                    <input
+                        th:if="${resultMap.ID==idMap.ID&&(resultMap.CATEGORY=='notice'||resultMap.CATEGORY=='event')}"
+                        th:formaction="${'/news/'+resultMap.CATEGORY}" type="submit" name="submit" value="삭제"
+                        class="btn btn-outline-secondary m-1">
+                    <input th:if="${resultMap.ID==idMap.ID&&(resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna')}"
+                        th:formaction="${'/community/'+resultMap.CATEGORY}" type="submit" name="submit" value="삭제"
+                        class="btn btn-outline-secondary m-1">
+                    <!--목록으로 버튼-->
                     <input type="submit" value="목록으로" class="btn btn-secondary m-1"
                         th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}"
                         th:formaction="${'/community/'+resultMap.CATEGORY}">

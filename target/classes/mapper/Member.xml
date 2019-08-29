@@ -25,5 +25,7 @@
 	</update>
 
 	<delete id="delete" parameterType="Map">
+		delete from MEMBER 
+		where ID = #{ID};
 	</delete>
 </mapper>

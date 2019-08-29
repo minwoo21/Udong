@@ -30,4 +30,8 @@ public class BoardService{
         Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
+    public void deletePost(Object dataMap){
+        String sqlMapid="Board.deletePost";
+        dao.getList(sqlMapid,dataMap);
+    }
 }
