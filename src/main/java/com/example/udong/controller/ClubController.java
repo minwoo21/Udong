@@ -43,12 +43,21 @@ public class ClubController {
         if ("location".equals(action)) {
             resultMap = service.getlocation(paramMap);
             // location logic
-        }else if ("interest".equals(action)) {
+        } else if ("location_search".equals(action)) {
+            resultMap = service.getlocation_search(paramMap);
+            // interest up logic
+        } else if ("interest".equals(action)) {
             resultMap = service.getinterest(paramMap);
+            // interest up logic
+        } else if ("interest_search".equals(action)) {
+            resultMap = service.getinterest_search(paramMap);
             // interest up logic
         } else if ("ranking".equals(action)) {
             // ranking logic
+<<<<<<< HEAD
             resultMap = service.get(paramMap);
+=======
+>>>>>>> v.park
         } else if ("introduce".equals(action)) {
 
         } else if ("clubBoard".equals(action)) {
