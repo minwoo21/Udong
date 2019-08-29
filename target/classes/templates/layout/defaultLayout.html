@@ -8,7 +8,8 @@
 
 <body class="d-flex flex-column h-100">
     <form method="POST">
-        <input type="hidden" name="flag" th:value="${flag.flag}">
+        <input type="hidden" name="flag" th:value="${flag.flag}"> 
+        <input type="hidden" name="userID" th:value="${idMap.ID}">
         <div class="container">
             <div class="text-center mt-3 pt-3">
                 <input type="submit" class="cs-logo cs-logo-main btn col-2" th:formaction="@{/home}" value="우동">
@@ -79,11 +80,12 @@
                             <form class="form-inline">
                                 <input class="form-control mr-sm-2" type="search" placeholder="동아리 검색"
                                     aria-label="Search">
-                                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" >검색</button>
+                                <button class="btn btn-outline-dark mx-2 my-2 my-sm-0" type="submit" >검색</button>
                             </form>
-                            <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-dark nav-link mx-3" name="submit" value="로그아웃">
-                            <input type="submit" th:if="${!flag.flag}" th:formaction="@{/login}" class="btn nav-link mx-3" value="로그인">
-                            <input type="submit" th:if="${!flag.flag}" th:formaction="@{/signup}" class="btn nav-link" value="회원가입">
+                            <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-dark nav-link mx-2" name="submit" value="로그아웃">
+                            <input type="submit" th:if="${flag.flag}" th:formaction="@{/home}" class="btn btn-outline-dark nav-link mx-2" name="submit" value="회원탈퇴">
+                            <input type="submit" th:if="${!flag.flag}" th:formaction="@{/login}" class="btn nav-link mx-2" value="로그인">
+                            <input type="submit" th:if="${!flag.flag}" th:formaction="@{/signup}" class="btn nav-link mx-2" value="회원가입">
                         </ul>
                     </div>
                 </nav>
