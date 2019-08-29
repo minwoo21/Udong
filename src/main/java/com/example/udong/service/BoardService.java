@@ -15,9 +15,9 @@ public class BoardService{
     @Autowired
     private MemberDao dao;
 
-    public Object getMember(Object dataMap){
-        String sqlMapid = "Board.user";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
+    public Object getPost(Object dataMap){
+        String sqlMapid = "Board.post";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
 }

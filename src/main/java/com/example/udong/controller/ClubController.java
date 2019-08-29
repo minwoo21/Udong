@@ -26,6 +26,13 @@ public class ClubController {
         else{
             flagMap.put("flag", paramMap.get("flag"));
         }
+        Map<String, Object> idMap = new HashMap<String, Object>();
+
+        if(paramMap.get("userID")==null)
+            idMap.put("ID", "");
+        else   
+            idMap.put("ID", paramMap.get("userID"));
+
         // divided depending on action value
         if ("location".equals(action)) {
             // location logic
@@ -43,6 +50,7 @@ public class ClubController {
 
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
+        modelandView.addObject("idMap", idMap);
         modelandView.addObject("flag", flagMap);
         return modelandView;
     }

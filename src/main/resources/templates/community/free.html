@@ -27,54 +27,12 @@
                         <th>작성시간</th>
                         <th>추천</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>title</td>
-                        <td>member</td>
-                        <td>time</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>title</td>
-                        <td>member</td>
-                        <td>time</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>title</td>
-                        <td>member</td>
-                        <td>time</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>title</td>
-                        <td>member</td>
-                        <td>time</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>title</td>
-                        <td>member</td>
-                        <td>time</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>title</td>
-                        <td>member</td>
-                        <td>time</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>title</td>
-                        <td>member</td>
-                        <td>time</td>
-                        <td>1</td>
+                    <tr th:each="post:${resultList}">
+                        <a></a><td th:text="${post.POSTNUM}"></td></a>
+                        <td th:text="${post.TITLE}"></td>
+                        <td th:text="${post.ID}"></td>
+                        <td th:text="${post.TIME}"></td>
+                        <td th:text="${post.RECOMMEND}"></td>
                     </tr>
                 </table>
             </div>

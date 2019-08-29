@@ -15,9 +15,9 @@ public class AreaService{
     @Autowired
     private MemberDao dao;
 
-    public Object getMember(Object dataMap){
-        String sqlMapid = "Area.user";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
+    public Object getLocal(Object dataMap){
+        String sqlMapid = "Area.local";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
 }
