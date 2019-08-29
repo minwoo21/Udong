@@ -33,6 +33,7 @@ public class HomeController {
 
     @Autowired
     private AreaService areaservice;
+
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
@@ -49,12 +50,12 @@ public class HomeController {
         else {
             flagMap.put("flag", paramMap.get("flag"));
         }
-        
+
         Map<String, Object> idMap = new HashMap<String, Object>();
 
-        if(paramMap.get("userID")==null)
+        if (paramMap.get("userID") == null)
             idMap.put("ID", "");
-        else   
+        else
             idMap.put("ID", paramMap.get("userID"));
 
         // divided depending on action value
@@ -76,7 +77,7 @@ public class HomeController {
                     resultMap = (Map) service.getMember(paramMap);
                     if (resultMap.size() != 0) {
                         flagMap.put("flag", true);
-                        idMap.put("ID",paramMap.get("ID"));
+                        idMap.put("ID", paramMap.get("ID"));
                     } else {
                         flagMap.put("flag", false);
                         viewName = "/login";
@@ -99,7 +100,7 @@ public class HomeController {
                         viewName = "/signup";
                     }
                     modelAndView.addObject("resultBean", paramMap);
-                }else if(submitValue.equals("회원탈퇴")){
+                } else if (submitValue.equals("회원탈퇴")) {
                     service.deleteMember(paramMap);
                     flagMap.put("flag", false);
                     idMap.put("ID", "");
@@ -107,12 +108,12 @@ public class HomeController {
             }
         } else if ("post".equals(action)) {
 
-        }else if("view".equals(action)){
+        } else if ("view".equals(action)) {
             Map<String, Object> postNumMap = new HashMap<String, Object>();
-            String postNumString = (String)paramMap.get("POSTNUM");
+            String postNumString = (String) paramMap.get("POSTNUM");
             postNumString = postNumString.split(" ")[0];
-            postNumMap.put("POSTNUM",postNumString );
-            resultMap = (Map)boardservice.getPostOne(postNumMap);
+            postNumMap.put("POSTNUM", postNumString);
+            resultMap = (Map) boardservice.getPostOne(postNumMap);
         }
         modelAndView.setViewName(viewName);
         modelAndView.addObject("paramMap", paramMap);
