@@ -54,10 +54,7 @@ public class ClubController {
             // interest up logic
         } else if ("ranking".equals(action)) {
             // ranking logic
-<<<<<<< HEAD
             resultMap = service.get(paramMap);
-=======
->>>>>>> v.park
         } else if ("introduce".equals(action)) {
 
         } else if ("clubBoard".equals(action)) {
