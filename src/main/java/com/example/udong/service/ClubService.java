@@ -1,6 +1,11 @@
 package com.example.udong.service;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
 import com.example.udong.repository.ClubRepository;
+import com.example.udong.util.ClubDao;
 import com.example.udong.util.MemberDao;
 
 import org.springframework.stereotype.Service;
@@ -13,12 +18,16 @@ public class ClubService {
     private ClubRepository repository;
 
     @Autowired
-    private MemberDao dao;
+    private ClubDao dao;
 
-    public Object getMember(Object dataMap) {
-        String sqlMapid = "Club.user";
-        Object resultObject = dao.getObject(sqlMapid, dataMap);
-
+    public Object getlocation(Object dataMap){
+        String sqlMapid = "Club.location";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
+        return resultObject;
+    }
+    public Object getinterest(Object dataMap){
+        String sqlMapid = "Club.interest";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
 }

@@ -15,9 +15,9 @@ public class InterestCategoryService{
     @Autowired
     private MemberDao dao;
 
-    public Object getMember(Object dataMap){
-        String sqlMapid = "InterstCategory.user";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
+    public Object getList(Object dataMap){
+        String sqlMapid = "Member.interest";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
 }

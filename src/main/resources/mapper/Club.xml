@@ -4,19 +4,16 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="Member">
-	<select id="user" resultType="Map" parameterType="Map">
-	    select * from MEMBER
-		where ID = #{ID};
-    </select>
-	<select id="interest" resultType="Map" parameterType="Map">
-	    select * from INTEREST_CATEGORY;
-    </select>
+<mapper namespace="Club">
+	<select id="location" resultType="Map" parameterType="Map">
+		select * from CLUB
+		where AREA_NAME = #{AREA_NAME};
+	</select>
 
-	<insert id="signup" parameterType="Map">
-		insert into MEMBER(ID,Name,Area_Name, Tel, Password)
-		values (#{ID},#{NAME},#{AREA_NAME},#{TEL},#{PASSWORD})
-	</insert>
+	<select id="interest" resultType="Map" parameterType="Map">
+		select * from CLUB
+		where INTEREST = #{INTEREST};
+	</select>
 
 	<insert id="insert" parameterType="Map">
 	</insert>
