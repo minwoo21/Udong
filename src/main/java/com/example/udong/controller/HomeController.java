@@ -108,7 +108,11 @@ public class HomeController {
         } else if ("post".equals(action)) {
 
         }else if("view".equals(action)){
-            resultMap = (Map)boardservice.getPostOne(paramMap);
+            Map<String, Object> postNumMap = new HashMap<String, Object>();
+            String postNumString = (String)paramMap.get("POSTNUM");
+            postNumString = postNumString.split(" ")[0];
+            postNumMap.put("POSTNUM",postNumString );
+            resultMap = (Map)boardservice.getPostOne(postNumMap);
         }
         modelAndView.setViewName(viewName);
         modelAndView.addObject("paramMap", paramMap);

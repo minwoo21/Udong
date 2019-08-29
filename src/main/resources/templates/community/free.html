@@ -11,10 +11,9 @@
                     <input type="submit" value="글쓰기" th:formaction="@{/post}" class="btn px-2 col-2 btn-secondary">
                 </div>
                 <!--리스트-->
-                <table class="table table-hover tb">
+                <table class="table table-hover tb text-center">
                     <thead>
                         <tr>
-                            <th>번호</th>
                             <th>제목</th>
                             <th>작성자</th>
                             <th>작성시간</th>
@@ -23,9 +22,8 @@
                     </thead>
                     <tbody>
                         <tr th:each="post:${resultList}">
-                            <td th:text="${post.POSTNUM}"></td><input type="hidden" name="POSTNUM" th:value="${post.POSTNUM}">
-                            <td class="decoration"><input type="submit" class="btn p-0 decoration"
-                                    th:value="${post.TITLE}"  th:formaction="@{/view}"></td>
+                            <td><input type="submit" class="btn" name="POSTNUM"
+                                th:value="${post.POSTNUM +' '+ post.TITLE}" th:formaction="@{/view}"></td>
                             <td th:text="${post.ID}"></td>
                             <td th:text="${post.TIME}"></td>
                             <td th:text="${post.RECOMMEND}"></td>
