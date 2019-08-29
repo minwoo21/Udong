@@ -101,6 +101,7 @@ public class HomeController {
                     }
                     modelAndView.addObject("resultBean", paramMap);
                 } else if (submitValue.equals("회원탈퇴")) {
+                    paramMap.putAll((Map) service.getMember(paramMap));
                     service.deleteMember(paramMap);
                     flagMap.put("flag", false);
                     idMap.put("ID", "");
