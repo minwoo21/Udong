@@ -7,44 +7,6 @@
 </head>
 
 <body class="d-flex flex-column h-100">
-<<<<<<< HEAD
-    <div class="container">
-        <div class="text-center mt-3 pt-3">
-            <a class="cs-logo cs-logo-main" th:href="@{/home}">우동</a>
-            <button class="cs-logo btn" th:formaction="@{/home}">우리들의 동아리</button>
-            <!-- navbar -->
-            <nav class="navbar navbar-expand-lg">
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between cs-nav" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                동아리
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" th:href="@{/club/location}">지역별 찾기</a>
-                                <a class="dropdown-item" th:href="@{/club/interest}">주제별 찾기</a>
-                                <a class="dropdown-item" th:href="@{/club/ranking}">랭킹</a>
-                            </div>
-                            <div th:if="${flag.flag}">
-                                <input type="submit" th:formaction="@{/login}"
-                                    class="btn btn-outline-dark nav-link mx-3" value="로그아웃">
-                            </div>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <!-- page content body 구성 -->
-        <div class="my-4">
-            <th:block layout:fragment="layout.content"></th:block>
-        </div>
-    </div>
-=======
     <form method="POST">
         <input type="hidden" name="flag" th:value="${flag.flag}"> 
         <input type="hidden" name="userID" th:value="${idMap.ID}">
@@ -135,7 +97,6 @@
         </div>
         <!-- 공통 footer -->
         <th:block th:replace="fragments/commonFooter"></th:block>
->>>>>>> chaelin
     </form>
 </body>
 
