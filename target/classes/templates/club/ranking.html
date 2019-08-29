@@ -9,6 +9,7 @@
                 <table class="table table-sm table-hover table-striped">
                     <thead class="thead-dark">
                         <tr>
+                            <th>순위</th>
                             <th>클럽명</th>
                             <th>지역</th>
                             <th>분야</th>
@@ -16,10 +17,11 @@
                         </tr>
                     <tbody>
                         <tr th:each="resultData: ${resultMap}">
-                            <td th:text=${resultData.CLUB_NAME}>ID</td>
-                            <td th:text=${resultData.AREA_NAME}>ID</td>
-                            <td th:text=${resultData.CONTENT}>ID</td>
-                            <td th:text=${resultData.RECOMMEND}>ID</td>
+                            <td th:text=${resultData.RANK}></td>
+                            <td th:text=${resultData.CLUB_NAME}></td>
+                            <td th:text=${resultData.AREA_NAME}></td>
+                            <td th:text=${resultData.CONTENT}></td>
+                            <td th:text=${resultData.RECOMMEND}></td>
                     </tbody>
                 </table>
             </div>

@@ -7,5 +7,6 @@
 <mapper namespace="ranking">
 	<select id="fetch" resultType="Map" parameterType="Map">
 	    select * from CLUB
+        order by RECOMMEND DESC
     </select>
 </mapper>
