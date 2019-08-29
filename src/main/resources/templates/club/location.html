@@ -50,7 +50,7 @@
                     <tbody>
                         <tr th:each="resultData: ${resultMap}">
                             <td th:text=${resultData.CLUB_NUM}></td>
-                            <td><button type="submit" class="btn p-0 m-0" th:formaction="@{/club/interest}"><p class="p-0 m-0" th:text=${resultData.CLUB_NAME}></span></button></td>
+                            <td><button type="submit" class="btn p-0 m-0" th:formaction="@{/home}"><p class="p-0 m-0" th:text=${resultData.CLUB_NAME}></span></button></td>
                             <td th:text=${resultData.ID}></td>
                             <td th:text=${resultData.INTEREST}></td>
                             <td th:text=${resultData.AREA_NAME}></td>
