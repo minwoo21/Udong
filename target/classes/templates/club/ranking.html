@@ -8,9 +8,18 @@
             <div class="container myhometown col-lg-10 col-md-12 col-sm-12">
                 <table class="table table-sm table-hover table-striped">
                     <thead class="thead-dark">
+                        <tr>
+                            <th>클럽명</th>
+                            <th>지역</th>
+                            <th>분야</th>
+                            <th>추천 수</th>
+                        </tr>
                     <tbody>
                         <tr th:each="resultData: ${resultMap}">
                             <td th:text=${resultData.CLUB_NAME}>ID</td>
+                            <td th:text=${resultData.AREA_NAME}>ID</td>
+                            <td th:text=${resultData.CONTENT}>ID</td>
+                            <td th:text=${resultData.RECOMMEND}>ID</td>
                     </tbody>
                 </table>
             </div>

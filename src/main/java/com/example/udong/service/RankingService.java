@@ -13,6 +13,12 @@ public class RankingService {
     public Object get(Object dataMap) {
         String sqlMapid = "ranking.fetch";
         Object resultObject = dao.getList(sqlMapid, dataMap);
+
+        // sorting club list by recommend num
+        for (int i = 0; i < (resultObject); i++) {
+
+        }
+
         return resultObject;
     }
 }
