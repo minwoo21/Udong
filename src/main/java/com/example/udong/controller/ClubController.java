@@ -19,6 +19,7 @@ public class ClubController {
 
     @Autowired
     private RankingService service;
+    @Autowired
     private ClubService service2;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
