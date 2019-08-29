@@ -25,6 +25,11 @@ public class MemberBean implements Serializable{
 
 
     public MemberBean() {
+        ID="";
+        NAME="";
+        AREA_NAME="";
+        TEL="";
+        PASSWORD="";
     }
 
     public MemberBean(String ID, String NAME, String AREA_NAME, String TEL, String PASSWORD) {
