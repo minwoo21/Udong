@@ -20,25 +20,9 @@ public class ClubService{
     @Autowired
     private ClubDao dao;
 
-    public Object getMember(Object dataMap){
-        String sqlMapid = "Club.user";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
-        return resultObject;
-    }
-    public Object setMember(Object dataMap){
+    public Object getObject(Object dataMap){
         String sqlMapid = "Club.location";
-        Object resultObject = dao.saveObject(sqlMapid,dataMap);
+        Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
-	public Object saveObject(Map<String, Object> paramMap) {
-		return null;
-    }
-    public Object getList(Object dataMap) {
-		Object resultObject = new HashMap<>();
-		// ((Map<String, Object>) resultObject).put("resultList", dao.getList(sqlMapId,
-		// dataMap));
-		((Map<String, Object>) resultObject).put("resultList", repository.findAll());
-
-		return resultObject;
-	}
 }

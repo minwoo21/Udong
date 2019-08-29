@@ -6,8 +6,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ClubDao {
+    
     @Autowired
     private SqlSessionTemplate sqlSession;
+
     public Object getList(String sqlMapId, Object dataMap) {
 		Object resultObject = sqlSession.selectList(sqlMapId, dataMap);
 

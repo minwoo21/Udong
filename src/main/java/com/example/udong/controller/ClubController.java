@@ -34,8 +34,7 @@ public class ClubController {
         }
         // divided depending on action value
         if ("location".equals(action)) {
-            resultMap = service.saveObject(paramMap);
-			action = "location";
+            resultMap = service.getObject(paramMap);
             // location logic
         } else if ("interest".equals(action)) {
             // interest up logic
