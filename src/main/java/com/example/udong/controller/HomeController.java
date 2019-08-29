@@ -34,6 +34,7 @@ public class HomeController {
     @Autowired
     private AreaService areaservice;
 
+    
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
@@ -109,11 +110,29 @@ public class HomeController {
         } else if ("post".equals(action)) {
 
         } else if ("view".equals(action)) {
-            Map<String, Object> postNumMap = new HashMap<String, Object>();
-            String postNumString = (String) paramMap.get("POSTNUM");
-            postNumString = postNumString.split(" ")[0];
-            postNumMap.put("POSTNUM", postNumString);
-            resultMap = (Map) boardservice.getPostOne(postNumMap);
+            if (!paramMap.keySet().contains("submit")) {// view로 가려할 때
+                Map<String, Object> postNumMap = new HashMap<String, Object>();
+                String postNumString = (String) paramMap.get("POSTNUM");
+                postNumString = postNumString.split(" ")[0];
+                postNumMap.put("POSTNUM", postNumString);
+
+                // resultList = commentservice.getComment(paramMap);
+                modelAndView.addObject("commentList", resultList);
+                
+                resultMap = (Map) boardservice.getPostOne(postNumMap);
+            } else {
+                Object submitValue = paramMap.get("submit");
+                if (submitValue.equals("댓글작성")) { // 댓글작성시
+                    // resultMap = (Map) service.getMember(paramMap);
+                    if (resultMap.size() != 0) {
+                        flagMap.put("flag", true);
+                        idMap.put("ID", paramMap.get("ID"));
+                    } else {
+                        flagMap.put("flag", false);
+                        viewName = "/login";
+                    }
+                }
+            }
         }
         modelAndView.setViewName(viewName);
         modelAndView.addObject("paramMap", paramMap);

@@ -18,6 +18,10 @@
 	    select * from BOARD
 		where TITLE like CONCAT('%',#{search},'%') and CATEGORY = #{CATEGORY};
     </select>
+	<select id="getComment" resultType="Map" parameterType="Map">
+	    select * from Comment
+		where POSTNUM=#{POSTNUM};
+    </select>
 <!-- 
 	<insert id="signup" parameterType="Map">
 		insert into MEMBER(ID,Name,Area_Name, Tel, Password)

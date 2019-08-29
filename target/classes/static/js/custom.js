@@ -80,3 +80,12 @@ function check(form) {
     }
     return flag;
 }
+
+
+function checkUser(form) {
+    var userID = form.userID.value;
+    if (userID == "") {
+        alert("로그인이 필요합니다.");
+        return false;
+    }
+}

@@ -20,6 +20,40 @@
                 <div class="border rounded p-3 m-2">
                     <p th:text="${resultMap.CONTENT}"></p>
                 </div>
+                <div class="border rounded p-3 m-2">
+                    <!-- 댓글창 -->
+                    <div class="row m-1">
+                        <h5>댓글 </h5><span class="mx-3">0개</span>
+                    </div>
+                    <div class="form-row">
+                        <div class="border rounded p-2 m-2 row text-left">
+                            <!-- <div th:each="comment:${commentList}">
+                                <div class="col-2 p-1" th:text="${comment.ID}"></div>
+                                <div class="col-7 p-1" th:text="${comment.CONTENT}"></div>
+                                <div class="col-3 p-1 text-right" th:text="${comment.TIME}"></div>
+                                <div class="m-2">
+                                    <input th:if="${resultMap.ID==idMap.ID}" name="submit" type="submit" value="수정"
+                                        class="btn btn-outline-secondary">
+                                    삭제 버튼
+                                    <input type="submit" name="submit" value="삭제" class="btn btn-outline-secondary">
+                                    <input
+                                        th:if="${resultMap.ID==idMap.ID&&(resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna')}"
+                                        th:formaction="${'/community/'+resultMap.CATEGORY}" type="submit" name="submit"
+                                        value="삭제" class="btn btn-outline-secondary m-1">
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- 작성란&버튼 -->
+                        <div class="row col justify-content-center my-1 mx-0">
+                            <form class="row col justify-content-center" onsubmit="return checkUser(this)">
+                                <input type="hidden" name="userID" th:value="${idMap.ID}">
+                                <input type="text" class="col-10 form-control">
+                                <input type="submit" class="btn btn-secondary col-2" th:formaction="@{/view}"
+                                    name="submit" value="댓글작성">
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="justify-content-end row m-3">
                     <input th:if="${resultMap.ID==idMap.ID}" name="submit" type="submit" value="수정"
                         class="btn btn-outline-secondary m-1">
