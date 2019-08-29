@@ -25,4 +25,9 @@ public class BoardService{
         Object resultObject = dao.getObject(sqlMapid,dataMap);
         return resultObject;
     }
+    public Object getSearchPost(Object dataMap){
+        String sqlMapid="Board.searchPost";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
+        return resultObject;
+    }
 }

@@ -36,20 +36,43 @@ public class CommunityController {
         }
         Map<String, Object> idMap = new HashMap<String, Object>();
 
-        if(paramMap.get("userID")==null)
+        if (paramMap.get("userID") == null)
             idMap.put("ID", "");
-        else   
+        else
             idMap.put("ID", paramMap.get("userID"));
 
-
+        paramMap.put("search", "");
         // divided depending on action value
         if ("free".equals(action)) {
             // free logic
-            Map<String, Object> category = new HashMap<String, Object>();
-            category.put("CATEGORY","free");
-            resultList = boardservice.getPost(category);
+            if (!paramMap.keySet().contains("submit")) {
+                // 전체 목록 불러오기
+                Map<String, Object> category = new HashMap<String, Object>();
+                category.put("CATEGORY", "free");
+                resultList = boardservice.getPost(category);
+            } else {
+                Object submitValue = paramMap.get("submit");
+                if (submitValue.equals("검색")) {
+                    // 검색 기능
+                    paramMap.put("CATEGORY", "free");
+                    resultList = boardservice.getSearchPost(paramMap);
+                }
+            }
         } else if ("qna".equals(action)) {
             // qna logic
+            if (!paramMap.keySet().contains("submit")) {
+                // 전체 목록 불러오기
+                Map<String, Object> category = new HashMap<String, Object>();
+                category.put("CATEGORY", "qna");
+                resultList = boardservice.getPost(category);
+            } else {
+                Object submitValue = paramMap.get("submit");
+                if (submitValue.equals("검색")) {
+                    // 검색 기능
+                    paramMap.put("CATEGORY", "qna");
+                    resultList = boardservice.getSearchPost(paramMap);
+                }
+            }
         }
 
         String viewName = "/community/" + action;
@@ -57,6 +80,7 @@ public class CommunityController {
         modelandView.setViewName(viewName);
 
         modelandView.addObject("resultMap", resultMap);
+        modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultList", resultList);
         modelandView.addObject("idMap", idMap);
         modelandView.addObject("flag", flagMap);
