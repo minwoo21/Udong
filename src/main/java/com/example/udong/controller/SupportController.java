@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.udong.service.FaqService;
+import com.example.udong.service.QnaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class SupportController {
 
     @Autowired
     private FaqService faq_service;
+
+    @Autowired
+    private QnaService qna_service;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/support/{action}", method = { RequestMethod.GET, RequestMethod.POST })
@@ -36,7 +40,12 @@ public class SupportController {
         if ("faq".equals(action)) {
             resultMap = faq_service.getList(paramMap);
         } else if ("ask".equals(action)) {
-            // event logic
+        } else if ("insert".equals(action)) {
+			resultMap = qna_service.saveObject(paramMap);
+            action = "ask";
+        } else if ("update".equals(action)) {
+			resultMap = qna_service.updateObject(paramMap);
+            action = "ask";
         }
 
         String viewName = "/support/" + action;
