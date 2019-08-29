@@ -3,11 +3,7 @@ package com.example.udong.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-<<<<<<< HEAD
 import com.example.udong.service.RankingService;
-=======
-import com.example.udong.service.ClubService;
->>>>>>> origin/v.park
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ClubController {
 
     @Autowired
-<<<<<<< HEAD
     private RankingService service;
-=======
-    private ClubService service;
->>>>>>> origin/v.park
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/club/{action}", method = { RequestMethod.GET, RequestMethod.POST })
