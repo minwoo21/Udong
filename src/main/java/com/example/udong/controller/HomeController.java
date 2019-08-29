@@ -44,10 +44,10 @@ public class HomeController {
         } else if ("home".equals(action)) {
             if (!paramMap.keySet().contains("submit")) {// home으로 가려할 때
                 viewName = "/home";
-            } 
-            
+            }
+
             else {
-                if (paramMap.get("submit").equals("로그인")) {  //로그인 창에서 버튼을 눌렀을때
+                if (paramMap.get("submit").equals("로그인")) { // 로그인 창에서 버튼을 눌렀을때
                     resultMap = (Map) service.getMember(paramMap);
                     if (resultMap.size() != 0) {
                         flagMap.put("flag", true);
@@ -56,14 +56,13 @@ public class HomeController {
                         flagMap.put("flag", false);
                         viewName = "/login";
                     }
-                }
-                else if(paramMap.get("submit").equals("로그아웃")){
+                } else if (paramMap.get("submit").equals("로그아웃")) {
                     viewName = "/home";
                     flagMap.put("flag", false);
                 }
             }
-        }else if("post".equals(action)){
-            
+        } else if ("post".equals(action)) {
+
         }
         modelAndView.setViewName(viewName);
         modelAndView.addObject("resultMap", resultMap);
