@@ -1,5 +1,7 @@
 package com.example.udong.service;
 
+import java.util.Map;
+
 import com.example.udong.repository.MemberRepository;
 import com.example.udong.util.MemberDao;
 
@@ -14,15 +16,19 @@ public class MemberService{
     
     @Autowired
     private MemberDao dao;
-    
+        
     public Object getMember(Object dataMap){
         String sqlMapid = "Member.user";
-        Object resultObject = dao.getList(sqlMapid,dataMap);
+        Object resultObject = dao.getObject(sqlMapid,dataMap);
         return resultObject;
     } 
     public Object setMember(Object dataMap){
         String sqlMapid = "Member.signup";
         Object resultObject = dao.saveObject(sqlMapid,dataMap);
         return resultObject;
+    }
+    public void deleteMember(Object dataMap){
+        String sqlMapid = "Member.delete";
+        Object resultObject = dao.deleteObject(sqlMapid, dataMap);
     }
 }

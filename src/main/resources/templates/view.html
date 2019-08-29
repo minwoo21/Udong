@@ -1,0 +1,24 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+    <th:block layout:fragment="layout.content">
+        <!--사이드바-->
+        <div th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
+            <th:block th:replace="fragments/boardNav"></th:block>
+        </div>
+        <div th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">
+            <th:block th:replace="fragments/clubBoardNav"></th:block>
+        </div>
+        <!--글 읽기 페이지-->
+        <div class="row border rounded p-3 m-2 justify-content-between">
+            <div class="col-6" th:text="${resultMap.TITLE}"></div>
+            <div class="col-6 text-right" th:text="${resultMap.TIME}"></div>
+        </div>
+        <div class="border rounded p-3 m-2">
+            <p th:text="${resultMap.CONTENT}"></p>
+        </div>
+        <div class="justify-content-end row m-3">
+            <input type="submit" value="수정" class="btn btn-outline-secondary m-1">
+            <input type="submit" value="삭제" class="btn btn-outline-secondary m-1">
+            <input type="submit" value="목록으로" class="btn btn-secondary m-1">
+        </div>
+    </th:block>
+</div>

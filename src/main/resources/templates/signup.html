@@ -3,7 +3,7 @@
     <th:block layout:fragment="layout.content">
 
         <div class="container my-5">
-            <form th:action="@{/home}">
+            <form onsubmit="return check(this)" th:action="@{/home}">
                 <div class="card-deck">
                     <div class="card">
                         <div class="card-header font-weight-bold">Information</div>
@@ -14,8 +14,7 @@
                                         Name
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control col" name="firstname" placeholder="성">
-                                        <input type="text" class="form-control col" name="surname" placeholder="이름">
+                                        <input type="text" class="form-control col" name="NAME" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -23,16 +22,8 @@
                                         Id
                                     </label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control col" name="id">
+                                        <input type="text" class="form-control col" name="ID" placeholder="ID">
                                     </div>
-                                </div>
-                                <label class="font-weight-bold">E-mail</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">@</span>
-                                    </div>
-                                    <input type="email" class="form-control" placeholder="Enter your E-mail address"
-                                        name="email">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -43,16 +34,18 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><span class="fas fa-lock"></span></span>
                                     </div>
-                                    <input type="password" class="form-control" placeholder="Enter password" name="pwd">
+                                    <input type="PASSWORD" id="PASSWORD" class="form-control"
+                                        placeholder="Enter password" name="pwd">
                                 </div>
                                 <div class="input-group mt-2">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><span class="fas fa-lock"></span></span>
                                     </div>
                                     <input type="password" class="form-control" placeholder="Confirm password"
-                                        name="pwdcf">
+                                        id="C_PASSWORD" name="C_PASSWORD">
                                 </div>
                             </div>
+                            <div class="text-center" id="checkPSW"></div>
                         </div>
                     </div>
                     <div class="card">
@@ -68,43 +61,90 @@
                             <div class="form-group">
                                 <label for="select" class="font-weight-bold">Gender</label>
                                 <select class="custom-select" name="gender">
-                                    <option value="m">남</option>
-                                    <option value="f">여</option>
+                                    <option value="남">남</option>
+                                    <option value="여">여</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="select" class="font-weight-bold">Hobby</label>
-                                <select class="custom-select col-12" name="sel">
-                                    <option>취미1</option>
-                                    <option>취미2</option>
-                                    <option>취미3</option>
-                                    <option>취미4</option>
-                                </select>
+                                <label for="select" class="font-weight-bold">Interest</label>
+                                <div>
+                                    <div class="d-inline-block" th:each="intrst: ${resultList}">
+                                        <input type="checkbox" class="m-2" name="INTEREST"
+                                            th:value="${intrst.NAME}"><span th:text="${intrst.NAME}"></span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="select" class="font-weight-bold">Local</label>
-                                <select class="custom-select col-12" name="sel">
-                                    <option>취미1</option>
-                                    <option>취미2</option>
-                                    <option>취미3</option>
-                                    <option>취미4</option>
-                                </select>
-                            </div>
+                            <div class="text-center" id="checkField"></div>
+                            <div class="text-center" id="interestField"></div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-9"></div>
                     <div class="col-3">
-                        <button class="btn btn-secondary submit m-3 text-right">
-                            가입하기
-                        </button>
+                        <input type="submit" name="submit" value="가입하기" th:formaction="@{/home}"
+                            class="btn btn-secondary submit m-3 text-right">
                     </div>
                 </div>
         </div>
         </form>
 </div>
+<script>
+    function check(form) {
+        var NAME = form.NAME;
+        var ID = form.ID;
+        var PASSWORD = form.PASSWORD;
+        var C_PASSWORD = form.C_PASSWORD;
+        var TEL = form.TEL;
+        var Ele = document.getElementsByTagName("input");
+        var GENDER = $("select[name='gender']").val();
+        var CheckList = $("input:checkbox[name='INTEREST']:checked");
+        var checkPSW = $("#checkPSW");
+        var checkField = $("#checkField");
+        var interestField = $("#interestField");
+        var pswWarning = "<p>비밀번호가 일치하지 않습니다.</p>";
+        var fieldWarning = "<p>모든 값을 입력해주세요.</p>";
+        var CheckWarning = "<p>관심분야를 한개 이상 선택해주세요.</p>";
+        checkPSW.css("color", "red");
+        checkField.css("color", "red");
+        interestField.css("color", "red");
+        checkField.text("");
+        checkPSW.text("");
+        interestField.text("");
+        var flag = false;
 
+        //비밀번호와 확인이 같은지 체크
+        if (PASSWORD.value != C_PASSWORD.value) {
+            checkPSW.append(pswWarning);
+            flag = false;
+        }
+        else {
+            checkPSW.text("");
+            flag = true;
+        }
+
+        //빈 값이 있는지 체크
+        if (NAME.value == "" || TEL.value == "" || PASSWORD == "" || id.value == "") {
+            checkField.append(fieldWarning);
+            flag = false;
+        }
+        else {
+            checkField.text("");
+            flag = flag ? true : false;
+        }
+
+        //체크박스 체크
+        if (CheckList.length == 0) {
+            interestField.append(CheckWarning);
+            flag = false;
+        }
+        else {
+            interestField.text("");
+            flag = flag ? true : false;
+        }
+        return flag;
+    }
+</script>
 </th:block>
 
 

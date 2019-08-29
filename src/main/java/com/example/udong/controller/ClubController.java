@@ -19,6 +19,19 @@ public class ClubController {
             ModelAndView modelandView) {
 
         Object resultMap = new HashMap<String, Object>();
+        Map<String, Object> flagMap = new HashMap<String, Object>();
+
+        if (paramMap.get("flag") == null)
+            flagMap.put("flag", false);
+        else{
+            flagMap.put("flag", paramMap.get("flag"));
+        }
+        Map<String, Object> idMap = new HashMap<String, Object>();
+
+        if(paramMap.get("userID")==null)
+            idMap.put("ID", "");
+        else   
+            idMap.put("ID", paramMap.get("userID"));
 
         // divided depending on action value
         if ("location".equals(action)) {
@@ -27,7 +40,9 @@ public class ClubController {
             // interest up logic
         } else if ("ranking".equals(action)) {
             // ranking logic
-        }
+        } else if("introduce".equals(action)){
+
+        } else if("clubBoard".equals(action)){}
 
         String viewName = "/club/" + action;
 
@@ -35,6 +50,8 @@ public class ClubController {
 
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
+        modelandView.addObject("idMap", idMap);
+        modelandView.addObject("flag", flagMap);
         return modelandView;
     }
 }

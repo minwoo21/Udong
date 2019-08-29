@@ -21,3 +21,16 @@
     text-decoration: none;
     color: black;
 }
+
+.board{
+    resize: none;
+}
+
+.decoration{
+    text-decoration: underline  ;
+    text-decoration-color: rgb(127, 171, 253);
+}
+.decoration:hover{
+    text-decoration: underline  ;
+    text-decoration-color: rgb(41, 41, 255);
+}

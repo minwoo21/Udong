@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="Board">
+	<select id="post" resultType="Map" parameterType="Map">
+	    select * from BOARD
+		where CATEGORY = #{CATEGORY}
+		Order by TIME;
+    </select>
+	<select id="postOne" resultType="Map" parameterType="Map">
+	    select * from BOARD
+		where POSTNUM = #{POSTNUM};
+    </select>
+<!-- 
+	<insert id="signup" parameterType="Map">
+		insert into MEMBER(ID,Name,Area_Name, Tel, Password)
+		values (#{ID},#{NAME},#{AREA_NAME},#{TEL},#{PASSWORD})
+	</insert> -->
+
+	<insert id="insert" parameterType="Map">
+	</insert>
+
+	<update id="update" parameterType="Map">
+	</update>
+
+	<delete id="delete" parameterType="Map">
+	</delete>
+</mapper>
