@@ -10,6 +10,11 @@
 		where AREA_NAME = #{AREA_NAME};
 	</select>
 
+	<select id="interest" resultType="Map" parameterType="Map">
+		select * from CLUB
+		where INTEREST = #{INTEREST};
+	</select>
+
 	<insert id="insert" parameterType="Map">
 	</insert>
 

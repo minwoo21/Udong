@@ -20,8 +20,13 @@ public class ClubService{
     @Autowired
     private ClubDao dao;
 
-    public Object getObject(Object dataMap){
+    public Object getlocation(Object dataMap){
         String sqlMapid = "Club.location";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
+        return resultObject;
+    }
+    public Object getinterest(Object dataMap){
+        String sqlMapid = "Club.interest";
         Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
