@@ -7,10 +7,18 @@
 <mapper namespace="Club">
 	<select id="location" resultType="Map" parameterType="Map">
 		select * from CLUB
+	</select>
+
+	<select id="location_search" resultType="Map" parameterType="Map">
+		select * from CLUB
 		where AREA_NAME = #{AREA_NAME};
 	</select>
 
 	<select id="interest" resultType="Map" parameterType="Map">
+		select * from CLUB
+	</select>
+
+	<select id="interest_search" resultType="Map" parameterType="Map">
 		select * from CLUB
 		where INTEREST = #{INTEREST};
 	</select>
