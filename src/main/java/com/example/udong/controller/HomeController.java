@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.udong.service.AreaService;
+import com.example.udong.service.BoardService;
 import com.example.udong.service.InterestCategoryService;
 import com.example.udong.service.MemberService;
 import com.example.udong.util.MemberBean;
@@ -26,6 +27,9 @@ public class HomeController {
 
     @Autowired
     private InterestCategoryService interestService;
+
+    @Autowired
+    private BoardService boardservice;
 
     @Autowired
     private AreaService areaservice;
@@ -103,6 +107,8 @@ public class HomeController {
             }
         } else if ("post".equals(action)) {
 
+        }else if("view".equals(action)){
+            resultMap = (Map)boardservice.getPostOne(paramMap);
         }
         modelAndView.setViewName(viewName);
         modelAndView.addObject("paramMap", paramMap);

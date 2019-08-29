@@ -10,6 +10,10 @@
 		where CATEGORY = #{CATEGORY}
 		Order by TIME;
     </select>
+	<select id="postOne" resultType="Map" parameterType="Map">
+	    select * from BOARD
+		where POSTNUM = #{POSTNUM};
+    </select>
 <!-- 
 	<insert id="signup" parameterType="Map">
 		insert into MEMBER(ID,Name,Area_Name, Tel, Password)

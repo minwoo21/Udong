@@ -20,4 +20,9 @@ public class BoardService{
         Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
+    public Object getPostOne(Object dataMap){
+        String sqlMapid = "Board.postOne";
+        Object resultObject = dao.getObject(sqlMapid,dataMap);
+        return resultObject;
+    }
 }

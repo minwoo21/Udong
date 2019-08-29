@@ -1,0 +1,14 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+    <th:block layout:fragment="layout.content">
+        <!--사이드바-->
+        <th:block th:if="${resultMap.CATEGORY}=='free'||${resultMap.CATEGORY}=='qna'" th:replace="fragments/boardNav"></th:block>
+        <th:block th:if="${resultMap.CATEGORY}=='event'||${resultMap.CATEGORY}=='notice'"th:replace="fragments/clubBoardNav"></th:block>
+        <!--글 읽기 페이지-->
+        <div class="border rounded">
+            제목:<span>언제 끝나ㅏㄴ</span>
+        </div>
+        <div class="border rounded">
+
+        </div>
+    </th:block>
+</div>
