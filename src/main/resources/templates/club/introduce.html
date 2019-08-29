@@ -1,0 +1,15 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+    <th:block layout:fragment="layout.content">
+        <th:block th:replace="fragments/clubBoardNav"></th:block>
+        <textarea class="board col border rounded mt-4 p-4 bg-white" disabled rows="10" data-spy="scroll">
+
+            풍물놀이 동아리 장수풍댕이 입니다~
+            많은 가입 부탁드려요!
+           
+        </textarea>
+        <div class="row m-4 justify-content-center">
+            <input type="submit" value="가입하기" formaction="" class="btn m-2 btn-outline-secondary">
+            <input type="submit" value="탈퇴하기" formaction="" class="btn m-2 btn-secondary">
+        </div>
+    </th:block>
+</div>

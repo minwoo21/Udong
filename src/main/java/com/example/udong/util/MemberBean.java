@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -23,6 +25,11 @@ public class MemberBean implements Serializable{
 
 
     public MemberBean() {
+        ID="";
+        NAME="";
+        AREA_NAME="";
+        TEL="";
+        PASSWORD="";
     }
 
     public MemberBean(String ID, String NAME, String AREA_NAME, String TEL, String PASSWORD) {

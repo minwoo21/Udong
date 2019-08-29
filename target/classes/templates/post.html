@@ -1,0 +1,15 @@
+<div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
+    <th:block layout:fragment="layout.content">
+        <!--글 쓰기 페이지-->
+        <h2></h2>
+        <div>
+            <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요">
+            <textarea class="board col border rounded mt-4 p-4" rows="10">
+        </textarea>
+        </div>
+        <div class="row m-3 justify-content-end">
+            <input type="submit" class="btn m-2 btn-outline-secondary" name="submit" value="글작성">
+            <input type="submit" class="btn m-2 btn-outline-secondary" name="submit" value="목록으로">
+        </div>
+    </th:block>
+</div>

@@ -1,9 +1,39 @@
 <div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
 
     <th:block layout:fragment="layout.content">
-        
-        
-    </th:block>
 
-   
+        <div class="row">
+            <!--사이드바-->
+            <th:block th:replace="fragments/clubNav"></th:block>
+            <div class="container myhometown col-lg-10 col-md-12 col-sm-12">
+                <table class="table table-sm table-hover table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>순위</th>
+                            <th>분야</th>
+                            <th>지역</th>
+                            <th>이름</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>요리</td>
+                            <td>경기도</td>
+                            <td>백종원따라잡기</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>문화생활</td>
+                            <td>서울</td>
+                            <td>고전문학토론모임</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+</th:block>
+
+
 </div>
