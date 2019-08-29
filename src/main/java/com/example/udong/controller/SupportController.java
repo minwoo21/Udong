@@ -3,6 +3,10 @@ package com.example.udong.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.udong.service.FaqService;
+import com.example.udong.service.QnaService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class SupportController {
+
+    @Autowired
+    private FaqService faq_service;
+
+    @Autowired
+    private QnaService qna_service;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/support/{action}", method = { RequestMethod.GET, RequestMethod.POST })
@@ -35,9 +45,11 @@ public class SupportController {
 
         // divided depending on action value
         if ("faq".equals(action)) {
-            // notice logic
+            resultMap = faq_service.getList(paramMap);
         } else if ("ask".equals(action)) {
-            // event logic
+        } else if ("insert".equals(action)) {
+			resultMap = qna_service.setObject(paramMap);
+            action = "ask";
         }
 
         String viewName = "/support/" + action;

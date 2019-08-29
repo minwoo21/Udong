@@ -18,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class ClubController {
 
     @Autowired
-    private ClubService service;
+    private RankingService service;
+    @Autowired
+    private ClubService service2;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/club/{action}", method = { RequestMethod.GET, RequestMethod.POST })
@@ -35,27 +37,30 @@ public class ClubController {
         }
         Map<String, Object> idMap = new HashMap<String, Object>();
 
-        if(paramMap.get("userID")==null)
+        if (paramMap.get("userID") == null)
             idMap.put("ID", "");
-        else   
+        else
             idMap.put("ID", paramMap.get("userID"));
 
         // divided depending on action value
         if ("location".equals(action)) {
-            resultMap = service.getlocation(paramMap);
+            resultMap = service2.getlocation(paramMap);
             // location logic
         } else if ("location_search".equals(action)) {
-            resultMap = service.getlocation_search(paramMap);
+            resultMap = service2.getlocation_search(paramMap);
             // interest up logic
         } else if ("interest".equals(action)) {
-            resultMap = service.getinterest(paramMap);
+            resultMap = service2.getinterest(paramMap);
             // interest up logic
         } else if ("interest_search".equals(action)) {
-            resultMap = service.getinterest_search(paramMap);
+            resultMap = service2.getinterest_search(paramMap);
             // interest up logic
         } else if ("introduce".equals(action)) {
 
         } else if ("clubBoard".equals(action)) {
+
+        } else if ("ranking".equals(action)) {
+            resultMap = service.get(paramMap);
         }
 
         String viewName = "/club/" + action;

@@ -39,11 +39,4 @@ public class RankingService {
         return resultObject02;
     }
 
-	public Object getlocation(Map<String, Object> paramMap) {
-		return null;
-	}
-
-	public Object getinterest(Map<String, Object> paramMap) {
-		return null;
-	}
 }
