@@ -1,4 +1,4 @@
-package com.example.udong.repository;
+package com.example.udong.util;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
