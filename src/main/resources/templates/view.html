@@ -1,14 +1,18 @@
 <div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
     <th:block layout:fragment="layout.content">
         <!--사이드바-->
-        <th:block th:if="${resultMap.CATEGORY=='free'}" th:replace="fragments/boardNav"></th:block>
-        <th:block th:if="${resultMap.CATEGORY=='event'}"th:replace="fragments/clubBoardNav"></th:block>
+        <div th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}" >
+            <th:block th:replace="fragments/boardNav"></th:block>
+        </div>
+        <div  th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">        
+            <th:block th:replace="fragments/clubBoardNav"></th:block>
+        </div>
         <!--글 읽기 페이지-->
         <div class="border rounded">
-            제목:<span>언제 끝나ㅏㄴ</span>
+            제목:<span th:text="${resultMap.TITLE}"></span>
         </div>
         <div class="border rounded">
-
+            <p th:text="${resultMap.CONTENT}"></p>
         </div>
     </th:block>
 </div>
