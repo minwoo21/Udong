@@ -29,21 +29,28 @@ public class ClubController {
 
         if (paramMap.get("flag") == null)
             flagMap.put("flag", false);
-        else{
+        else {
             flagMap.put("flag", paramMap.get("flag"));
         }
         // divided depending on action value
         if ("location".equals(action)) {
             resultMap = service.getlocation(paramMap);
             // location logic
-        }else if ("interest".equals(action)) {
+        } else if ("location_search".equals(action)) {
+            resultMap = service.getlocation_search(paramMap);
+            // interest up logic
+        } else if ("interest".equals(action)) {
             resultMap = service.getinterest(paramMap);
+            // interest up logic
+        } else if ("interest_search".equals(action)) {
+            resultMap = service.getinterest_search(paramMap);
             // interest up logic
         } else if ("ranking".equals(action)) {
             // ranking logic
-        } else if("introduce".equals(action)){
+        } else if ("introduce".equals(action)) {
 
-        } else if("clubBoard".equals(action)){}
+        } else if ("clubBoard".equals(action)) {
+        }
 
         String viewName = "/club/" + action;
 

@@ -25,8 +25,21 @@ public class ClubService{
         Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
+
+    public Object getlocation_search(Object dataMap){
+        String sqlMapid = "Club.location_search";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
+        return resultObject;
+    }
+    
     public Object getinterest(Object dataMap){
         String sqlMapid = "Club.interest";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
+        return resultObject;
+    }
+
+    public Object getinterest_search(Object dataMap){
+        String sqlMapid = "Club.interest_search";
         Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
