@@ -3,7 +3,11 @@ package com.example.udong.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.udong.service.AreaService;
+import com.example.udong.service.BoardService;
+import com.example.udong.service.InterestCategoryService;
 import com.example.udong.service.MemberService;
+import com.example.udong.util.MemberBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,14 +25,25 @@ public class HomeController {
     @Autowired
     private MemberService service;
 
+    @Autowired
+    private InterestCategoryService interestService;
+
+    @Autowired
+    private BoardService boardservice;
+
+    @Autowired
+    private AreaService areaservice;
+
+    
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
             ModelAndView modelAndView) {
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
+        Object resultList = new Object();
         Map<String, Object> flagMap = new HashMap<String, Object>();
-
+        MemberBean member = new MemberBean();
         String viewName = action;
 
         if (paramMap.get("flag") == null)
@@ -36,36 +51,102 @@ public class HomeController {
         else {
             flagMap.put("flag", paramMap.get("flag"));
         }
+
+        Map<String, Object> idMap = new HashMap<String, Object>();
+
+        if (paramMap.get("userID") == null)
+            idMap.put("ID", "");
+        else
+            idMap.put("ID", paramMap.get("userID"));
+
         // divided depending on action value
         if ("login".equals(action)) {
 
         } else if ("signup".equals(action)) {
-
+            Object interestList = interestService.getList(paramMap);
+            Object localList = areaservice.getLocal(paramMap);
+            modelAndView.addObject("interestList", interestList);
+            modelAndView.addObject("localList", localList);
+            modelAndView.addObject("resultBean", member);
+            modelAndView.addObject("idCheck", false);
         } else if ("home".equals(action)) {
             if (!paramMap.keySet().contains("submit")) {// home으로 가려할 때
                 viewName = "/home";
-            } 
-            
-            else {
-                if (paramMap.get("submit").equals("로그인")) {  //로그인 창에서 버튼을 눌렀을때
+            } else {
+                Object submitValue = paramMap.get("submit");
+                if (submitValue.equals("로그인")) { // 로그인 창에서 버튼을 눌렀을때
                     resultMap = (Map) service.getMember(paramMap);
                     if (resultMap.size() != 0) {
                         flagMap.put("flag", true);
-                        modelAndView.addObject("resultMap", resultMap);
+                        idMap.put("ID", paramMap.get("ID"));
                     } else {
                         flagMap.put("flag", false);
                         viewName = "/login";
                     }
-                }
-                else if(paramMap.get("submit").equals("로그아웃")){
+                } else if (submitValue.equals("로그아웃")) {
                     viewName = "/home";
                     flagMap.put("flag", false);
+                } else if (submitValue.equals("회원가입")) {
+                    Object interestList = interestService.getList(paramMap);
+                    Object localList = areaservice.getLocal(paramMap);
+                    modelAndView.addObject("interestList", interestList);
+                    modelAndView.addObject("localList", localList);
+                    resultMap = (Map) service.getMember(paramMap);
+                    if (resultMap == null) {
+                        modelAndView.addObject("idCheck", false);
+                        service.setMember(paramMap);
+                        viewName = "/home";
+                    } else {
+                        modelAndView.addObject("idCheck", true);
+                        viewName = "/signup";
+                    }
+                    modelAndView.addObject("resultBean", paramMap);
+                } else if (submitValue.equals("회원탈퇴")) {
+                    service.deleteMember(idMap);
+                    flagMap.put("flag", false);
+                    idMap.put("ID", "");
+                }
+            }
+        } else if ("post".equals(action)) {
+
+        } else if ("view".equals(action)) {
+            if (!paramMap.keySet().contains("submit")) {// view로 가려할 때
+                Map<String, Object> postNumMap = new HashMap<String, Object>();
+                String postNumString = (String) paramMap.get("POSTNUM");
+                postNumString = postNumString.split(" ")[0];
+                postNumMap.put("POSTNUM", postNumString);
+
+                // resultList = commentservice.getComment(paramMap);
+                modelAndView.addObject("commentList", resultList);
+                
+                resultMap = (Map) boardservice.getPostOne(postNumMap);
+            } else {
+                Object submitValue = paramMap.get("submit");
+                if (submitValue.equals("댓글작성")) { // 댓글작성시
+                    // resultMap = (Map) service.getMember(paramMap);
+                    // if (resultMap.size() != 0) {
+                    //     flagMap.put("flag", true);
+                    //     idMap.put("ID", paramMap.get("ID"));
+                    // } else {
+                    //     flagMap.put("flag", false);
+                    //     viewName = "/login";
+                    // }
+                }else if(submitValue.equals("추천")){
+                    if(boardservice.isRecommend(paramMap)!=null){
+                        boardservice.subRecommend(paramMap);
+                    }
+                    else{
+                        boardservice.addRecommend(paramMap);
+                    }
                 }
             }
         }
         modelAndView.setViewName(viewName);
+        modelAndView.addObject("paramMap", paramMap);
         modelAndView.addObject("resultMap", resultMap);
+        modelAndView.addObject("idMap", idMap);
         modelAndView.addObject("flag", flagMap);
         return modelAndView;
     }
+
 }

@@ -15,9 +15,36 @@ public class BoardService{
     @Autowired
     private MemberDao dao;
 
-    public Object getMember(Object dataMap){
-        String sqlMapid = "Board.user";
+    public Object getPost(Object dataMap){
+        String sqlMapid = "Board.post";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
+        return resultObject;
+    }
+    public Object getPostOne(Object dataMap){
+        String sqlMapid = "Board.postOne";
         Object resultObject = dao.getObject(sqlMapid,dataMap);
         return resultObject;
+    }
+    public Object getSearchPost(Object dataMap){
+        String sqlMapid="Board.searchPost";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
+        return resultObject;
+    }
+    public void deletePost(Object dataMap){
+        String sqlMapid="Board.deletePost";
+        dao.getList(sqlMapid,dataMap);
+    }
+    public Object isRecommend(Object dataMap){
+        String sqlMapid="Board.isRecommend";
+        Object resultObject = dao.getObject(sqlMapid,dataMap);
+        return resultObject;
+    }
+    public void addRecommend(Object dataMap){
+        String sqlMapid="Board.addRecommend";
+        dao.updateObject(sqlMapid,dataMap);
+    }
+    public void subRecommend(Object dataMap){
+        String sqlMapid="Board.subRecommend";
+        dao.updateObject(sqlMapid,dataMap);
     }
 }

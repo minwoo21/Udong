@@ -3,6 +3,10 @@ package com.example.udong.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.udong.service.ClubService;
+import com.example.udong.service.RankingService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ClubController {
+
+    @Autowired
+    private RankingService service;
+    @Autowired
+    private ClubService service2;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/club/{action}", method = { RequestMethod.GET, RequestMethod.POST })
@@ -23,19 +32,36 @@ public class ClubController {
 
         if (paramMap.get("flag") == null)
             flagMap.put("flag", false);
-        else{
+        else {
             flagMap.put("flag", paramMap.get("flag"));
         }
+        Map<String, Object> idMap = new HashMap<String, Object>();
+
+        if (paramMap.get("userID") == null)
+            idMap.put("ID", "");
+        else
+            idMap.put("ID", paramMap.get("userID"));
+
         // divided depending on action value
         if ("location".equals(action)) {
+            resultMap = service2.getlocation(paramMap);
             // location logic
-        } else if ("interest".equals(action)) {
+        } else if ("location_search".equals(action)) {
+            resultMap = service2.getlocation_search(paramMap);
             // interest up logic
-        } else if ("ranking".equals(action)) {
-            // ranking logic
-        } else if("introduce".equals(action)){
+        } else if ("interest".equals(action)) {
+            resultMap = service2.getinterest(paramMap);
+            // interest up logic
+        } else if ("interest_search".equals(action)) {
+            resultMap = service2.getinterest_search(paramMap);
+            // interest up logic
+        } else if ("introduce".equals(action)) {
 
-        } else if("clubBoard".equals(action)){}
+        } else if ("clubBoard".equals(action)) {
+
+        } else if ("ranking".equals(action)) {
+            resultMap = service.get(paramMap);
+        }
 
         String viewName = "/club/" + action;
 
@@ -43,6 +69,7 @@ public class ClubController {
 
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
+        modelandView.addObject("idMap", idMap);
         modelandView.addObject("flag", flagMap);
         return modelandView;
     }

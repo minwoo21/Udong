@@ -20,20 +20,21 @@ public class BoardBean implements Serializable{
     String TIME;
     String TITLE;
     String CONTENT;
-    String CLUB_NUM;
+    Integer RECOMMEND;
     String ID;
 
 
     public BoardBean() {
+        RECOMMEND=0;
     }
 
-    public BoardBean(Integer POSTNUM, String CATEGORY, String TIME, String TITLE, String CONTENT, String CLUB_NUM, String ID) {
+    public BoardBean(Integer POSTNUM, String CATEGORY, String TIME, String TITLE, String CONTENT, Integer RECOMMEND, String ID) {
         this.POSTNUM = POSTNUM;
         this.CATEGORY = CATEGORY;
         this.TIME = TIME;
         this.TITLE = TITLE;
         this.CONTENT = CONTENT;
-        this.CLUB_NUM = CLUB_NUM;
+        this.RECOMMEND = RECOMMEND;
         this.ID = ID;
     }
 
@@ -77,12 +78,12 @@ public class BoardBean implements Serializable{
         this.CONTENT = CONTENT;
     }
 
-    public String getCLUB_NUM() {
-        return this.CLUB_NUM;
+    public Integer getRECOMMEND() {
+        return this.RECOMMEND;
     }
 
-    public void setCLUB_NUM(String CLUB_NUM) {
-        this.CLUB_NUM = CLUB_NUM;
+    public void setRECOMMEND(Integer RECOMMEND) {
+        this.RECOMMEND = RECOMMEND;
     }
 
     public String getID() {
@@ -118,8 +119,8 @@ public class BoardBean implements Serializable{
         return this;
     }
 
-    public BoardBean CLUB_NUM(String CLUB_NUM) {
-        this.CLUB_NUM = CLUB_NUM;
+    public BoardBean RECOMMEND(Integer RECOMMEND) {
+        this.RECOMMEND = RECOMMEND;
         return this;
     }
 
@@ -136,12 +137,12 @@ public class BoardBean implements Serializable{
             return false;
         }
         BoardBean boardBean = (BoardBean) o;
-        return Objects.equals(POSTNUM, boardBean.POSTNUM) && Objects.equals(CATEGORY, boardBean.CATEGORY) && Objects.equals(TIME, boardBean.TIME) && Objects.equals(TITLE, boardBean.TITLE) && Objects.equals(CONTENT, boardBean.CONTENT) && Objects.equals(CLUB_NUM, boardBean.CLUB_NUM) && Objects.equals(ID, boardBean.ID);
+        return Objects.equals(POSTNUM, boardBean.POSTNUM) && Objects.equals(CATEGORY, boardBean.CATEGORY) && Objects.equals(TIME, boardBean.TIME) && Objects.equals(TITLE, boardBean.TITLE) && Objects.equals(CONTENT, boardBean.CONTENT) && Objects.equals(RECOMMEND, boardBean.RECOMMEND) && Objects.equals(ID, boardBean.ID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(POSTNUM, CATEGORY, TIME, TITLE, CONTENT, CLUB_NUM, ID);
+        return Objects.hash(POSTNUM, CATEGORY, TIME, TITLE, CONTENT, RECOMMEND, ID);
     }
 
     @Override
@@ -152,7 +153,7 @@ public class BoardBean implements Serializable{
             ", TIME='" + getTIME() + "'" +
             ", TITLE='" + getTITLE() + "'" +
             ", CONTENT='" + getCONTENT() + "'" +
-            ", CLUB_NUM='" + getCLUB_NUM() + "'" +
+            ", RECOMMEND='" + getRECOMMEND() + "'" +
             ", ID='" + getID() + "'" +
             "}";
     }

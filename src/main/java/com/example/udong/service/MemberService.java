@@ -27,4 +27,8 @@ public class MemberService{
         Object resultObject = dao.saveObject(sqlMapid,dataMap);
         return resultObject;
     }
+    public void deleteMember(Object dataMap){
+        String sqlMapid = "Member.delete";
+        dao.deleteObject(sqlMapid, dataMap);
+    }
 }
