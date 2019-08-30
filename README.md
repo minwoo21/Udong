@@ -12,3 +12,5 @@
 #
 ### 화면 정의서
 <img src="./src/main/resources/portfolio/화면정의서.PNG" width="100%">
+#### 메인 페이지
+<img src="./src/main/resources/portfolio/main.PNG" width="100%">
