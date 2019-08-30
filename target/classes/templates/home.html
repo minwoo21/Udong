@@ -58,6 +58,8 @@
             </div>
             <!-- 분야별 동아리 -->
             <form th:action="@{/home}" id="insert_form">
+                <input type="hidden" name="flag" th:value="${flag.flag}">
+                <input type="hidden" name="userID" th:value="${idMap.ID}">
                 <div class="ml-4">
                     <input type="submit" class="btn-sm btn-secondary" name="INSERT" value="교양">
                     <input type="submit" class="btn-sm btn-secondary" name="INSERT" value="문화">
