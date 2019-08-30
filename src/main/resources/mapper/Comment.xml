@@ -8,4 +8,8 @@
 	<select id="getComment" resultType="Map" parameterType="Map">
 	    select * from COMMENT where POST_NUM = #{POSTNUM};
     </select>
+    <insert id="insertComment" parameterType="Map">
+        insert into COMMENT (ID, POST_NUM, CONTENT, TIME)
+        values (#{userID},#{POSTNUM},#{CONTENT},NOW());
+    </insert>
 </mapper>

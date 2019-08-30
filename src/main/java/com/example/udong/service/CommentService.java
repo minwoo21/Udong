@@ -24,5 +24,9 @@ public class CommentService{
         Object resultObject = dao.getList(sqlMapid,dataMap);
         return resultObject;
     }
+    public void insertComment(Object dataMap){
+      String sqlMapid = "Comment.insertComment";
+      dao.getList(sqlMapid,dataMap);
+    }
     
 }
