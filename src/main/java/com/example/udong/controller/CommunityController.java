@@ -41,7 +41,9 @@ public class CommunityController {
         else
             idMap.put("ID", paramMap.get("userID"));
 
-        paramMap.put("search", "");
+        if(paramMap.get("search")==null)
+            paramMap.put("search", "");
+
         // divided depending on action value
         if ("free".equals(action)) {
             // free logic
