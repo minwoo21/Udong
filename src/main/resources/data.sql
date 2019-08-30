@@ -40,7 +40,7 @@ VALUES ('Q1. 회원가입은 어떻게 하나요?',
 - 혹은, 이메일 주소와 패스워드만 입력하셔도 가입이 가능합니다.');
 INSERT INTO FAQ (TITLE, CONTENT) 
 VALUES ('Q2. 비회원도 우동을 이용할 수 있나요?', 
-'프립 신청은 회원 가입을 통해서만 가능합니다. 프립 회원으로 가입하시면 새로운 프립과 이벤트 소식을 받아보실 수 있으며 다양한 혜택을 누리실 수 있습니다.');
+'우동 신청은 회원 가입을 통해서만 가능합니다. 우동 회원으로 가입하시면 새로운 우동과 이벤트 소식을 받아보실 수 있으며 다양한 혜택을 누리실 수 있습니다.');
 INSERT INTO FAQ (TITLE, CONTENT) 
 VALUES ('Q3. 우동은 무엇인가요?', '우동이란 [우리들의 동아리]의 준말입니다. 우동은 사람들을 모아 다양한 종류의 동아리를 함께 즐기고 소통하며 더 행복한 삶을 살 수 있게 도와주는 서비스 플랫폼입니다.
 지친 일상 속에서 우동을 통해 활력을 찾아보시길 바랍니다.
@@ -72,9 +72,9 @@ INSERT INTO MEMBER (ID, AREA_NAME, TEL, PASSWORD, NAME) VALUES ('ID 08', 'AREA_N
 INSERT INTO MEMBER (ID, AREA_NAME, TEL, PASSWORD, NAME) VALUES ('ID 09', 'AREA_NAME 09', 'TEL 09', 'PASSWORD 09', 'NAME 09');
 INSERT INTO MEMBER (ID, AREA_NAME, TEL, PASSWORD, NAME) VALUES ('ID 10', 'AREA_NAME 10', 'TEL 10', 'PASSWORD 10', 'NAME 10');
 
-INSERT INTO BOARD (CATEGORY, TIME, TITLE, CONTENT, ID, RECOMMEND) VALUES ('free', NOW(), 'TITLE 01', 'CONTENT 01', 'ID 01', 0);
-INSERT INTO BOARD (CATEGORY, TIME, TITLE, CONTENT, ID, RECOMMEND) VALUES ('free', NOW(), 'TITLE 02', 'CONTENT 02', 'ID 02', 0);
-INSERT INTO BOARD (CATEGORY, TIME, TITLE, CONTENT, ID, RECOMMEND) VALUES ('free', NOW(), 'TITLE 03', 'CONTENT 03', 'ID 03', 0);
+INSERT INTO BOARD (CATEGORY, TIME, TITLE, CONTENT, ID, RECOMMEND) VALUES ('free', NOW(), '영자 일 안함?', '밑에 맨날 vs로 어그로 끄는 놈 정지 안 시킴?', '비판적인', 11);
+INSERT INTO BOARD (CATEGORY, TIME, TITLE, CONTENT, ID, RECOMMEND) VALUES ('free', NOW(), '우동이 망할 수 밖에 없는 이유.txt', '지역별 검색이랑 흥미별 검색 동시에 되게 해달라고 문의 계속 넣는데도 조치 안취함ㅋㅋㅋ', '방구석전문가', 51);
+INSERT INTO BOARD (CATEGORY, TIME, TITLE, CONTENT, ID, RECOMMEND) VALUES ('free', NOW(), '182cm 평범남 vs 162cm 임시완', '닥후 ㅇㅈ?', '어그로꾼', 2);
 INSERT INTO BOARD (CATEGORY, TIME, TITLE, CONTENT, ID, RECOMMEND) VALUES ('qna', NOW(), 'TITLE 04', 'CONTENT 04', 'ID 04', 0);
 INSERT INTO BOARD (CATEGORY, TIME, TITLE, CONTENT, ID, RECOMMEND) VALUES ('qna', NOW(), 'TITLE 05', 'CONTENT 05', 'ID 05', 0);
 INSERT INTO BOARD (CATEGORY, TIME, TITLE, CONTENT, ID, RECOMMEND) VALUES ('event', NOW(), 'TITLE 06', 'CONTENT 06', 'ID 06', 0);

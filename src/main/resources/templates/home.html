@@ -13,21 +13,21 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <a href="./" ><img th:src="@{/img/춤.jpg}" class="d-block w-100"></a>
+                                <a href="./club/introduce.html" ><img th:src="@{/img/춤.jpg}" class="d-block w-100"></a>
                                 <div class="carousel-caption d-none d-md-block cs-logo text-white">
                                     <h1>[ 노력하는 춤꾼들 ]</h1>
                                     <h5>춤추고 배우는 모임</h5>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <a href="./" ><img th:src="@{/img/등산.jpg}" class="d-block w-100"></a>
+                                <a href="./club/introduce.html" ><img th:src="@{/img/등산.jpg}" class="d-block w-100"></a>
                                 <div class="carousel-caption d-none d-md-block cs-logo text-white">
                                     <h1>[ 산을 타는 사람들 ]</h1>
                                     <h5>등산 모임</h5>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <a href="./" ><img th:src="@{/img/교양.jpg}" class="d-block w-100"></a>
+                                <a href="./club/introduce.html" ><img th:src="@{/img/교양.jpg}" class="d-block w-100"></a>
                                 <div class="carousel-caption d-none d-md-block cs-logo text-white">
                                     <h1>[ 교양을 먹고 살다 ]</h1>
                                     <h5>음악,미술,문학,역사,종교 교양 공유</h5>
@@ -56,16 +56,35 @@
             </div>
         </div>
         <!-- 분야별 동아리 -->
+        <form th:action="@{/home}" id="insert_form">
+            <div class="btn-group ml-4">
+                <button type="submit" class="btn btn-sm btn-secondary" name="INSERT" value="교양">교양</button>
+                <button type="submit" class="btn btn-sm btn-secondary" name="INSERT" value="문화">문화</button>
+                <button type="submit" class="btn btn-sm btn-secondary" name="INSERT" value="운동">운동</button>
+                <button type="submit" class="btn btn-sm btn-secondary" name="INSERT" value="친목">친목</button>
+                <button type="submit" class="btn btn-sm btn-secondary" name="INSERT" value="요리">요리</button>
+                <button type="submit" class="btn btn-sm btn-secondary" name="INSERT" value="정치">정치</button>
+            </div>
+        </form>
         <div class="card-deck m-4">
-            <div class="card">Card01</div>
-            <div class="card">Card01</div>
-            <div class="card">Card01</div>
+            <div class="card col-4" th:each="resultData: ${resultList}">
+                <h5 class="card-header cs-logo" th:text=${resultData.CLUB_NAME}></h5>
+                <div class="card-body cs-logo">
+                    <h5 class="card-title">Activity</h5>
+                    <p class="card-text" th:text=${resultData.INTRO}></p>
+                    <a href="#" class="btn btn-secondary">상세 페이지</a>
+                </div>
+                <div class="card-footer text-muted" th:text=${resultData.AREA_NAME}></div>
+            </div>
         </div>
+
         <!-- 커뮤니티,뉴스 헤드 -->
         <div class="row mt-3">
             <div class="col-6">
                 <h2 class="cs-logo m-4">커뮤니티 최신</h1>
             </div>
+
+
             <div class="col-6">
                 <h2 class="cs-logo m-4">뉴스 최신</h1>
             </div>
