@@ -120,7 +120,7 @@ public class HomeController {
                 }
             }
         } else if ("post".equals(action)) {
-
+            
         } else if ("view".equals(action)) {
             Map<String, Object> postNumMap = new HashMap<String, Object>();
             if (paramMap.get("POSTNUM") != null) {

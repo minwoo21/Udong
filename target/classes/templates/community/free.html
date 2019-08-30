@@ -11,6 +11,7 @@
                     <input type="text" name="search" th:value="${paramMap.search}" class="form-control col-7">
                     <input type="submit" name="submit" value="검색" th:formaction="@{/community/free}" class="btn px-2 col-2 btn-outline-dark">
                     <input type="submit" name="submit" value="글쓰기" th:formaction="@{/post}" class="btn px-2 col-2 btn-secondary">
+                    <input type="hidden" name="CATEGORY" value="free">
                 </div>
                 <!--리스트-->
                 <table class="table table-hover tb text-center">
