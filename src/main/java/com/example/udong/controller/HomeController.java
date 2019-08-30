@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.example.udong.service.AreaService;
 import com.example.udong.service.BoardService;
+import com.example.udong.service.CommentService;
 import com.example.udong.service.InterestCategoryService;
 import com.example.udong.service.MemberService;
 import com.example.udong.service.RecommendService;
@@ -34,6 +35,9 @@ public class HomeController {
 
     @Autowired
     private RecommendService recommendservice;
+
+    @Autowired
+    private CommentService commentservice;
 
     @Autowired
     private AreaService areaservice;
@@ -117,11 +121,12 @@ public class HomeController {
             String postNumString = (String) paramMap.get("POSTNUM");
             postNumString = postNumString.split(" ")[0];
             postNumMap.put("POSTNUM", postNumString);
+            
+            // 댓글 목록 불러오기
+            Object CommentList = commentservice.getComment(postNumMap);
+            modelAndView.addObject("commentList", CommentList);
+
             if (!paramMap.keySet().contains("submit")) {// view로 가려할 때
-
-                // resultList = commentservice.getComment(paramMap);
-                // modelAndView.addObject("commentList", resultList);
-
                 resultMap = (Map) boardservice.getPostOne(postNumMap);
             } else {
                 Object submitValue = paramMap.get("submit");

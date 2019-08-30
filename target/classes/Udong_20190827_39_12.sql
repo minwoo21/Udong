@@ -24,18 +24,6 @@ CREATE TABLE CLUB
 ALTER TABLE CLUB COMMENT '동아리';
 
 
--- -- COMMENT Table Create SQL
--- CREATE TABLE COMMENT
--- (
---     `NUM`      INT            NOT NULL    AUTO_INCREMENT COMMENT '분류 번호', 
---     `ID`       VARCHAR(45)    NULL        COMMENT '아이디', 
---     `CONTENT`  VARCHAR(45)    NULL        COMMENT '내용', 
---     `POSTNUM`  VARCHAR(45)    NULL        COMMENT '글번호', 
---     `TIME`  TIMESTAMP    NULL        COMMENT '작성시간', 
---     PRIMARY KEY (NUM)
--- );
-
--- CLUB Table Create SQL
 CREATE TABLE MEMBER
 (
     `ID`         VARCHAR(45)    NOT NULL    COMMENT '아이디', 
@@ -176,7 +164,7 @@ ALTER TABLE QNA COMMENT 'QNA';
 CREATE TABLE COMMENT
 (
     `ID`        VARCHAR(45)    NULL        COMMENT '아이디', 
-    `POST_NUM`  VARCHAR(45)    NULL        COMMENT '글번호', 
+    `POST_NUM`  INT    NULL        COMMENT '글번호', 
     `CONTENT`   VARCHAR(45)    NULL        COMMENT '내용', 
     `TIME`      TIMESTAMP      NULL        COMMENT '작성시간', 
     `CO_NUM`    INT            NOT NULL    AUTO_INCREMENT COMMENT '댓글번호', 
