@@ -11,6 +11,9 @@
         <input type="hidden" name="flag" th:value="${flag.flag}"> 
         <input type="hidden" name="userID" th:value="${idMap.ID}">
         <div class="container">
+            <div class="text-right">
+                <input type="submit" th:formaction="@{/admin/answer}" class="btn" value="Admin">
+            </div>
             <div class="text-center mt-3 pt-3">
                 <input type="submit" class="cs-logo cs-logo-main btn col-2" th:formaction="@{/home}" value="우동">
                 <form class="d-inline">
