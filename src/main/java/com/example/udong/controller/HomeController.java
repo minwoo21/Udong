@@ -124,12 +124,19 @@ public class HomeController {
                 Object submitValue = paramMap.get("submit");
                 if (submitValue.equals("댓글작성")) { // 댓글작성시
                     // resultMap = (Map) service.getMember(paramMap);
-                    if (resultMap.size() != 0) {
-                        flagMap.put("flag", true);
-                        idMap.put("ID", paramMap.get("ID"));
-                    } else {
-                        flagMap.put("flag", false);
-                        viewName = "/login";
+                    // if (resultMap.size() != 0) {
+                    //     flagMap.put("flag", true);
+                    //     idMap.put("ID", paramMap.get("ID"));
+                    // } else {
+                    //     flagMap.put("flag", false);
+                    //     viewName = "/login";
+                    // }
+                }else if(submitValue.equals("추천")){
+                    if(boardservice.isRecommend(paramMap)!=null){
+                        boardservice.subRecommend(paramMap);
+                    }
+                    else{
+                        boardservice.addRecommend(paramMap);
                     }
                 }
             }

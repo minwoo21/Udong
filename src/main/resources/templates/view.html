@@ -19,6 +19,9 @@
                 </div>
                 <div class="border rounded p-3 m-2">
                     <p th:text="${resultMap.CONTENT}"></p>
+                    <div class="row col justify-content-center">
+                        <input type="submit" class="btn btn-outline-danger" th:formaction="@{/view}"name="submit" value="추천">
+                    </div>
                 </div>
                 <div class="border rounded p-3 m-2">
                     <!-- 댓글창 -->
