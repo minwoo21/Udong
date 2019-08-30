@@ -47,6 +47,9 @@ public class HomeController {
     @Autowired
     private HomeService homeservice;
 
+    // @RequestMapping(value = "/club/introduce", method = { RequestMethod.GET, RequestMethod.POST })
+    // public void introduce_action(){
+    // }
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
