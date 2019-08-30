@@ -20,7 +20,13 @@
                 <div class="border rounded p-3 m-2">
                     <p th:text="${resultMap.CONTENT}"></p>
                     <div class="row col justify-content-center">
-                        <input type="submit" class="btn btn-outline-danger" th:formaction="@{/view}"name="submit" value="추천">
+                        <form onsubmit="return checkUser(this)">
+                            <input type="hidden" name="userID" th:value="${idMap.ID}">
+                            <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
+                            <input type="submit" class="btn btn-outline-danger" th:formaction="@{/view}" name="submit"
+                                value="추천">
+                            <span th:text="${resultMap.RECOMMEND}"></span><span>명이 추천합니다</span>
+                        </form>
                     </div>
                 </div>
                 <div class="border rounded p-3 m-2">
@@ -61,6 +67,7 @@
                     <input th:if="${resultMap.ID==idMap.ID}" name="submit" type="submit" value="수정"
                         class="btn btn-outline-secondary m-1">
                     <!--삭제 버튼-->
+                    <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
                     <input
                         th:if="${resultMap.ID==idMap.ID&&(resultMap.CATEGORY=='notice'||resultMap.CATEGORY=='event')}"
                         th:formaction="${'/news/'+resultMap.CATEGORY}" type="submit" name="submit" value="삭제"

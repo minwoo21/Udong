@@ -1,6 +1,6 @@
 package com.example.udong.service;
 
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +29,7 @@ public class ClubService {
     public Object getlocation_search(Object dataMap){
         String sqlMapid = "Club.location_search";
         Object resultObject = dao.getList(sqlMapid,dataMap);
+        ((ArrayList<HashMap<String, Object>>)resultObject).add((HashMap<String, Object>) dataMap);
         return resultObject;
     }
     

@@ -12,16 +12,21 @@
     
 	<!-- 추천을 누른 적 있는지 확인 -->
 	<select id="isRecommend" resultType="Map" parameterType="Map">
-	    select * from RECOMMEND where POSTNUM=#{POSTNUM} and ID = #{ID};
+	    select * from RECOMMEND where POST_NUM=#{POSTNUM} and ID = #{userID};
+    </select>
+	
+	<!-- 추천 수 확인 -->
+	<select id="countRecommend" resultType="Integer" parameterType="Map">
+	    select count(*) from RECOMMEND where POST_NUM=#{POSTNUM};
     </select>
 
 	<insert id="insertRecommend" parameterType="Map">
-        insert into RECOMMEND (ID, POSTNUM)
-        values (#{ID},#{POSTNUM});
+        insert into RECOMMEND (ID, POST_NUM)
+        values (#{userID},#{POSTNUM});
 	</insert>
 
 	<delete id="deleteRecommend" parameterType="Map">
 		delete from RECOMMEND
-		where ID=#{ID} and POSTNUM=#{POSTNUM};
+		where ID=#{userID} and POST_NUM=#{POSTNUM};
 	</delete>
 </mapper>
