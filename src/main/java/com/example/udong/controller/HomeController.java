@@ -7,6 +7,7 @@ import com.example.udong.service.AreaService;
 import com.example.udong.service.BoardService;
 import com.example.udong.service.InterestCategoryService;
 import com.example.udong.service.MemberService;
+import com.example.udong.service.RecommendService;
 import com.example.udong.util.MemberBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,11 @@ public class HomeController {
     private BoardService boardservice;
 
     @Autowired
+    private RecommendService recommendservice;
+
+    @Autowired
     private AreaService areaservice;
 
-    
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
@@ -110,28 +113,35 @@ public class HomeController {
         } else if ("post".equals(action)) {
 
         } else if ("view".equals(action)) {
+            Map<String, Object> postNumMap = new HashMap<String, Object>();
+            String postNumString = (String) paramMap.get("POSTNUM");
+            postNumString = postNumString.split(" ")[0];
+            postNumMap.put("POSTNUM", postNumString);
             if (!paramMap.keySet().contains("submit")) {// view로 가려할 때
-                Map<String, Object> postNumMap = new HashMap<String, Object>();
-                String postNumString = (String) paramMap.get("POSTNUM");
-                postNumString = postNumString.split(" ")[0];
-                postNumMap.put("POSTNUM", postNumString);
 
                 // resultList = commentservice.getComment(paramMap);
-                modelAndView.addObject("commentList", resultList);
-                
+                // modelAndView.addObject("commentList", resultList);
+
                 resultMap = (Map) boardservice.getPostOne(postNumMap);
             } else {
                 Object submitValue = paramMap.get("submit");
                 if (submitValue.equals("댓글작성")) { // 댓글작성시
-                    // resultMap = (Map) service.getMember(paramMap);
-                    if (resultMap.size() != 0) {
-                        flagMap.put("flag", true);
-                        idMap.put("ID", paramMap.get("ID"));
+
+                } else if (submitValue.equals("추천")) {
+                    Map x = (Map) recommendservice.isRecommend(paramMap);
+                    if (x == null) {
+                        recommendservice.addRecommend(paramMap);
+                        Integer y = recommendservice.countRecommend(paramMap);
+                        paramMap.put("RECOMMEND", y);
+                        boardservice.addRecommend(paramMap);
                     } else {
-                        flagMap.put("flag", false);
-                        viewName = "/login";
+                        recommendservice.subRecommend(paramMap);
+                        Integer y = recommendservice.countRecommend(paramMap);
+                        paramMap.put("RECOMMEND", y);
+                        boardservice.subRecommend(paramMap);
                     }
                 }
+                resultMap = (Map) boardservice.getPostOne(postNumMap);
             }
         }
         modelAndView.setViewName(viewName);
