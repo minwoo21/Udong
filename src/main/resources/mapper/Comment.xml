@@ -12,4 +12,7 @@
         insert into COMMENT (ID, POST_NUM, CONTENT, TIME)
         values (#{userID},#{POSTNUM},#{CONTENT},NOW());
     </insert>
+    <delete id="deleteComment" parameterType="Map">
+        delete from Comment where ID = #{userID} and TIME=#{TIME};
+    </delete>
 </mapper>
