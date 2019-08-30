@@ -47,7 +47,6 @@ public class HomeController {
     @Autowired
     private HomeService homeservice;
 
-    // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
             ModelAndView modelAndView) {
@@ -159,6 +158,9 @@ public class HomeController {
             // 댓글 목록 불러오기
             Object CommentList = commentservice.getComment(postNumMap);
             modelAndView.addObject("commentList", CommentList);
+        }
+
+        if("/club/introduce".equals(action)){
         }
 
         modelAndView.setViewName(viewName);
