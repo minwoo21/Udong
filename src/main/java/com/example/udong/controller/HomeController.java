@@ -6,8 +6,10 @@ import java.util.Map;
 import com.example.udong.service.AreaService;
 import com.example.udong.service.BoardService;
 import com.example.udong.service.HomeService;
+import com.example.udong.service.CommentService;
 import com.example.udong.service.InterestCategoryService;
 import com.example.udong.service.MemberService;
+import com.example.udong.service.RecommendService;
 import com.example.udong.util.MemberBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,12 @@ public class HomeController {
 
     @Autowired
     private BoardService boardservice;
+
+    @Autowired
+    private RecommendService recommendservice;
+
+    @Autowired
+    private CommentService commentservice;
 
     @Autowired
     private AreaService areaservice;
@@ -115,36 +123,39 @@ public class HomeController {
         } else if ("post".equals(action)) {
 
         } else if ("view".equals(action)) {
+            Map<String, Object> postNumMap = new HashMap<String, Object>();
+            String postNumString = (String) paramMap.get("POSTNUM");
+            postNumString = postNumString.split(" ")[0];
+            postNumMap.put("POSTNUM", postNumString);
+
+            // 댓글 목록 불러오기
+            Object CommentList = commentservice.getComment(postNumMap);
+            modelAndView.addObject("commentList", CommentList);
+
             if (!paramMap.keySet().contains("submit")) {// view로 가려할 때
-                Map<String, Object> postNumMap = new HashMap<String, Object>();
-                String postNumString = (String) paramMap.get("POSTNUM");
-                postNumString = postNumString.split(" ")[0];
-                postNumMap.put("POSTNUM", postNumString);
-
-                // resultList = commentservice.getComment(paramMap);
-                modelAndView.addObject("commentList", resultList);
-
                 resultMap = (Map) boardservice.getPostOne(postNumMap);
             } else {
                 Object submitValue = paramMap.get("submit");
                 if (submitValue.equals("댓글작성")) { // 댓글작성시
-                    // resultMap = (Map) service.getMember(paramMap);
-                    // if (resultMap.size() != 0) {
-                    // flagMap.put("flag", true);
-                    // idMap.put("ID", paramMap.get("ID"));
-                    // } else {
-                    // flagMap.put("flag", false);
-                    // viewName = "/login";
-                    // }
+
                 } else if (submitValue.equals("추천")) {
-                    if (boardservice.isRecommend(paramMap) != null) {
-                        boardservice.subRecommend(paramMap);
-                    } else {
+                    Map x = (Map) recommendservice.isRecommend(paramMap);
+                    if (x == null) {
+                        recommendservice.addRecommend(paramMap);
+                        Integer y = recommendservice.countRecommend(paramMap);
+                        paramMap.put("RECOMMEND", y);
                         boardservice.addRecommend(paramMap);
+                    } else {
+                        recommendservice.subRecommend(paramMap);
+                        Integer y = recommendservice.countRecommend(paramMap);
+                        paramMap.put("RECOMMEND", y);
+                        boardservice.subRecommend(paramMap);
                     }
                 }
+                resultMap = (Map) boardservice.getPostOne(postNumMap);
             }
         }
+
         modelAndView.setViewName(viewName);
         modelAndView.addObject("paramMap", paramMap);
         modelAndView.addObject("resultMap", resultMap);

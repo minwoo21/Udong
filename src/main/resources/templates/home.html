@@ -1,9 +1,51 @@
 <div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
     <th:block layout:fragment="layout.content">
         <!-- 추천 동아리 헤드 -->
-        <div class="row">
-            <div class="col-lg-12 m-4">
+        <div class="row text-center">
+            <div class="col-lg-12">
                 <h1 class="page-header cs-logo">Editor's Pick</h1>
+                <div class="bd-example w-50 container">
+                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="./" ><img th:src="@{/img/춤.jpg}" class="d-block w-100"></a>
+                                <div class="carousel-caption d-none d-md-block cs-logo text-white">
+                                    <h1>[ 노력하는 춤꾼들 ]</h1>
+                                    <h5>춤추고 배우는 모임</h5>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="./" ><img th:src="@{/img/등산.jpg}" class="d-block w-100"></a>
+                                <div class="carousel-caption d-none d-md-block cs-logo text-white">
+                                    <h1>[ 산을 타는 사람들 ]</h1>
+                                    <h5>등산 모임</h5>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="./" ><img th:src="@{/img/교양.jpg}" class="d-block w-100"></a>
+                                <div class="carousel-caption d-none d-md-block cs-logo text-white">
+                                    <h1>[ 교양을 먹고 살다 ]</h1>
+                                    <h5>음악,미술,문학,역사,종교 교양 공유</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
         <!--추천 동아리-->

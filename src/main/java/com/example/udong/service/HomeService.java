@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.udong.util.HomeDao;
+import com.example.udong.repository.ClubRepository;
+import com.example.udong.util.RankingDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ public class HomeService {
 
     @Autowired
     private HomeDao dao;
+
+    @Autowired
+    private ClubRepository club_repository;
 
     public Object get(Object dataMap) {
 
@@ -52,6 +57,17 @@ public class HomeService {
         Object resultObject = dao.getList(sqlMapid, dataMap);
 
         int recordsnum = ((ArrayList<HashMap<String, Object>>) resultObject).size();
+
+        return resultObject;
+    }
+
+    public Object get_pickList(Object dataMap) {
+        String sqlMapId = "home.editor_pick";
+
+        Object resultObject = new HashMap<>();
+        // ((Map<String, Object>) resultObject).put("resultList", dao.getList(sqlMapId,
+        // dataMap));
+        ((Map<String, Object>) resultObject).put("resultList", club_repository.findAll());
 
         return resultObject;
     }
