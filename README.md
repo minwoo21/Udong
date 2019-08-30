@@ -7,3 +7,8 @@
 # 
 ### 기획자 Udong(우동:우리들의 동아리)
 #### 백성훈, 김민우, 변재웅, 최중진
+#
+#
+#
+### 화면 정의서
+<img src="./src/main/resources/portfolio/화면정의서" width="100%">
