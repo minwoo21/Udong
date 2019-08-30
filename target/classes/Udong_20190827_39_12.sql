@@ -131,4 +131,22 @@ CREATE TABLE QNA
 
 ALTER TABLE QNA COMMENT 'QNA';
 
+CREATE TABLE COMMENT
+(
+    `ID`        VARCHAR(45)    NULL        COMMENT '아이디', 
+    `POST_NUM`  VARCHAR(45)    NULL        COMMENT '글번호', 
+    `CONTENT`   VARCHAR(45)    NULL        COMMENT '내용', 
+    `TIME`      TIMESTAMP      NULL        COMMENT '작성시간', 
+    `CO_NUM`    INT            NOT NULL    AUTO_INCREMENT COMMENT '댓글번호', 
+    PRIMARY KEY (CO_NUM)
+);
 
+ALTER TABLE COMMENT COMMENT '댓글';
+
+CREATE TABLE RECOMMEND
+(
+    `ID`        VARCHAR(45)    NULL        COMMENT '아이디', 
+    `POST_NUM`  VARCHAR(45)    NULL        COMMENT '글번호'
+);
+
+ALTER TABLE RECOMMEND COMMENT '추천';
