@@ -3,7 +3,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="Board">
 	<select id="post" resultType="Map" parameterType="Map">
 	    select * from BOARD
@@ -26,23 +26,17 @@
 		where POSTNUM=#{POSTNUM};
     </select>
 
-	<select id="isRecommend" resultType="Map" parameterType="Map">
-	<!-- 추천을 누른 적 있는지 확인 -->
-	    select * from RECOMMEND where POSTNUM=#{POSTNUM} and ID = #{ID};
-    </select>
-
 	<insert id="insert" parameterType="Map">
 	</insert>
 
 	<!-- 추천을 했을 때 추천 수 추가 및 감소 -->
 	<update id="addRecommend" parameterType="Map">
-		update BOARD SET RECOMMEND = RECOMMEND + 1 where ID={#ID};
+		update BOARD SET RECOMMEND = (RECOMMEND + 1) where POSTNUM=#{POSTNUM};
 	</update>
 
 	<update id="subRecommend" parameterType="Map">
-		update BOARD SET RECOMMEND = RECOMMEND - 1 where ID={#ID};
+		update BOARD SET RECOMMEND = (RECOMMEND - 1) where POSTNUM=#{POSTNUM};
 	</update>
-
 
 	<delete id="deletePost" parameterType="Map">
 		delete from BOARD

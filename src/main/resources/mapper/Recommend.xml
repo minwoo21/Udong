@@ -14,6 +14,11 @@
 	<select id="isRecommend" resultType="Map" parameterType="Map">
 	    select * from RECOMMEND where POST_NUM=#{POSTNUM} and ID = #{userID};
     </select>
+	
+	<!-- 추천 수 확인 -->
+	<select id="countRecommend" resultType="Integer" parameterType="Map">
+	    select count(*) from RECOMMEND where POST_NUM=#{POSTNUM};
+    </select>
 
 	<insert id="insertRecommend" parameterType="Map">
         insert into RECOMMEND (ID, POST_NUM)

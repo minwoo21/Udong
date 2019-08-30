@@ -33,18 +33,13 @@ public class BoardService{
     public void deletePost(Object dataMap){
         String sqlMapid="Board.deletePost";
         dao.deleteObject(sqlMapid,dataMap);
-    }
-    public Object isRecommend(Object dataMap){
-        String sqlMapid="Recommend.isRecommend";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
-        return resultObject;
-    }
+    } 
     public void addRecommend(Object dataMap){
-        String sqlMapid="Recommend.addRecommend";
+        String sqlMapid="Board.addRecommend";
         dao.updateObject(sqlMapid,dataMap);
     }
     public void subRecommend(Object dataMap){
-        String sqlMapid="Recommend.subRecommend";
+        String sqlMapid="Board.subRecommend";
         dao.updateObject(sqlMapid,dataMap);
     }
 }

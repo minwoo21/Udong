@@ -38,7 +38,6 @@ public class HomeController {
     @Autowired
     private AreaService areaservice;
 
-    
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
@@ -114,30 +113,35 @@ public class HomeController {
         } else if ("post".equals(action)) {
 
         } else if ("view".equals(action)) {
+            Map<String, Object> postNumMap = new HashMap<String, Object>();
+            String postNumString = (String) paramMap.get("POSTNUM");
+            postNumString = postNumString.split(" ")[0];
+            postNumMap.put("POSTNUM", postNumString);
             if (!paramMap.keySet().contains("submit")) {// view로 가려할 때
-                Map<String, Object> postNumMap = new HashMap<String, Object>();
-                String postNumString = (String) paramMap.get("POSTNUM");
-                postNumString = postNumString.split(" ")[0];
-                postNumMap.put("POSTNUM", postNumString);
 
                 // resultList = commentservice.getComment(paramMap);
-                modelAndView.addObject("commentList", resultList);
-                
+                // modelAndView.addObject("commentList", resultList);
+
                 resultMap = (Map) boardservice.getPostOne(postNumMap);
             } else {
                 Object submitValue = paramMap.get("submit");
                 if (submitValue.equals("댓글작성")) { // 댓글작성시
-                    
+
+                } else if (submitValue.equals("추천")) {
+                    Map x = (Map) recommendservice.isRecommend(paramMap);
+                    if (x == null) {
+                        recommendservice.addRecommend(paramMap);
+                        Integer y = recommendservice.countRecommend(paramMap);
+                        paramMap.put("RECOMMEND", y);
+                        boardservice.addRecommend(paramMap);
+                    } else {
+                        recommendservice.subRecommend(paramMap);
+                        Integer y = recommendservice.countRecommend(paramMap);
+                        paramMap.put("RECOMMEND", y);
+                        boardservice.subRecommend(paramMap);
                     }
-                // }else if(submitValue.equals("추천")){
-                //     resultList = recommendservice.isRecommend(paramMap);
-                //     if(resultList.){
-                //         recommendservice.subRecommend(paramMap);
-                //     }
-                //     else{
-                //         recommendservice.addRecommend(paramMap);
-                //     }
-                // }
+                }
+                resultMap = (Map) boardservice.getPostOne(postNumMap);
             }
         }
         modelAndView.setViewName(viewName);

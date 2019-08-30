@@ -21,10 +21,11 @@
                     <p th:text="${resultMap.CONTENT}"></p>
                     <div class="row col justify-content-center">
                         <form onsubmit="return checkUser(this)">
-                                <input type="hidden" name="userID" th:value="${idMap.ID}">
-                                <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
+                            <input type="hidden" name="userID" th:value="${idMap.ID}">
+                            <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
                             <input type="submit" class="btn btn-outline-danger" th:formaction="@{/view}" name="submit"
                                 value="추천">
+                            <span th:text="${resultMap.RECOMMEND}"></span><span>명이 추천합니다</span>
                         </form>
                     </div>
                 </div>
