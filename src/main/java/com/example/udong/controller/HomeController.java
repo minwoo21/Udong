@@ -47,7 +47,6 @@ public class HomeController {
     @Autowired
     private HomeService homeservice;
 
-    // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
             ModelAndView modelAndView) {
@@ -121,22 +120,21 @@ public class HomeController {
                 }
             }
         } else if ("post".equals(action)) {
-
+            
         } else if ("view".equals(action)) {
             Map<String, Object> postNumMap = new HashMap<String, Object>();
-            String postNumString = (String) paramMap.get("POSTNUM");
-            postNumString = postNumString.split(" ")[0];
-            postNumMap.put("POSTNUM", postNumString);
-
-            // 댓글 목록 불러오기
-            Object CommentList = commentservice.getComment(postNumMap);
-            modelAndView.addObject("commentList", CommentList);
-
+            if (paramMap.get("POSTNUM") != null) {
+                String postNumString = (String) paramMap.get("POSTNUM");
+                postNumString = postNumString.split(" ")[0];
+                postNumMap.put("POSTNUM", postNumString);
+                paramMap.put("POSTNUM", postNumString);
+            }
             if (!paramMap.keySet().contains("submit")) {// view로 가려할 때
                 resultMap = (Map) boardservice.getPostOne(postNumMap);
             } else {
                 Object submitValue = paramMap.get("submit");
                 if (submitValue.equals("댓글작성")) { // 댓글작성시
+                    commentservice.insertComment(paramMap);
 
                 } else if (submitValue.equals("추천")) {
                     Map x = (Map) recommendservice.isRecommend(paramMap);
@@ -151,9 +149,18 @@ public class HomeController {
                         paramMap.put("RECOMMEND", y);
                         boardservice.subRecommend(paramMap);
                     }
+                } else if (submitValue.equals("삭제")) {
+                    commentservice.deleteComment(paramMap);
                 }
                 resultMap = (Map) boardservice.getPostOne(postNumMap);
             }
+
+            // 댓글 목록 불러오기
+            Object CommentList = commentservice.getComment(postNumMap);
+            modelAndView.addObject("commentList", CommentList);
+        }
+
+        if("/club/introduce".equals(action)){
         }
 
         modelAndView.setViewName(viewName);

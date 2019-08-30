@@ -63,6 +63,8 @@ public class CommunityController {
                     paramMap.put("CATEGORY", "free");
                     boardservice.deletePost(paramMap);
                     resultList = boardservice.getPost(paramMap);
+                }else if(submitValue.equals("글작성")){
+                    boardservice.insertPost(paramMap);
                 }
             }
         } else if ("qna".equals(action)) {
@@ -78,6 +80,8 @@ public class CommunityController {
                     // 검색 기능
                     paramMap.put("CATEGORY", "qna");
                     resultList = boardservice.getSearchPost(paramMap);
+                }else if(submitValue.equals("글작성")){
+                    boardservice.insertPost(paramMap);
                 }
             }
         }

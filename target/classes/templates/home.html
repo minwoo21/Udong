@@ -27,21 +27,21 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <a href="./club/introduce.html"><img th:src="@{/img/춤.jpg}" class="d-block w-100"></a>
+                                <a th:href="@{/club/introduce}"><img th:src="@{/img/춤.jpg}"class="d-block w-100"></a>
                                 <div class="carousel-caption d-none d-md-block cs-logo text-white">
                                     <h1>[ 노력하는 춤꾼들 ]</h1>
                                     <h5>춤추고 배우는 모임</h5>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <a href="./club/introduce.html"><img th:src="@{/img/등산.jpg}" class="d-block w-100"></a>
+                                <a th:href="@{/club/introduce}"><img th:src="@{/img/등산.jpg}" class="d-block w-100"></a>
                                 <div class="carousel-caption d-none d-md-block cs-logo text-white">
                                     <h1>[ 산을 타는 사람들 ]</h1>
                                     <h5>등산 모임</h5>
                                 </div>
                             </div>
                             <div class="carousel-item">
-                                <a href="./club/introduce.html"><img th:src="@{/img/교양.jpg}" class="d-block w-100"></a>
+                                <a th:href="@{/club/introduce}"><img th:src="@{/img/교양.jpg}" class="d-block w-100"></a>
                                 <div class="carousel-caption d-none d-md-block cs-logo text-white">
                                     <h1>[ 교양을 먹고 살다 ]</h1>
                                     <h5>음악,미술,문학,역사,종교 교양 공유</h5>
@@ -72,6 +72,8 @@
             </div>
             <!-- 분야별 동아리 -->
             <form th:action="@{/home}" id="insert_form">
+                <input type="hidden" name="flag" th:value="${flag.flag}">
+                <input type="hidden" name="userID" th:value="${idMap.ID}">
                 <div class="ml-4">
                     <input type="submit" class="btn-sm btn-secondary" name="INSERT" value="교양">
                     <input type="submit" class="btn-sm btn-secondary" name="INSERT" value="문화">
@@ -87,7 +89,7 @@
                     <div class="card-body cs-logo">
                         <h5 class="card-title">Activity</h5>
                         <p class="card-text" th:text=${resultData.INTRO}></p>
-                        <a href="#" class="btn btn-secondary">상세 페이지</a>
+                        <a th:href="@{/club/introduce}" class="btn btn-secondary">상세 페이지</a>
                     </div>
                     <div class="card-footer text-muted" th:text=${resultData.AREA_NAME}></div>
                 </div>
@@ -98,11 +100,73 @@
         <div class="row mt-3">
             <div class="col-6">
                 <h2 class="cs-logo m-4">커뮤니티 최신</h1>
+                    <table class="table tb">
+                        <tr>
+                            <td>첫번째 커뮤니티</td>
+                            <td>11:51</td>
+                        </tr>
+                        <tr>
+                            <td>두번째 커뮤니티</td>
+                            <td>11:00</td>
+
+                        </tr>
+                        <tr>
+                            <td>세번째 커뮤니티</td>
+                            <td>10:51
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>네번째 커뮤니티</td>
+                            <td>09:01</td>
+
+                        </tr>
+                        <tr>
+                            <td>다섯번째 커뮤니티</td>
+                            <td>08:53</td>
+
+                        </tr>
+                        <tr>
+                            <td>여섯번째 커뮤니티</td>
+                            <td>08:11</td>
+                        </tr>
+                    </table>
             </div>
 
 
             <div class="col-6">
                 <h2 class="cs-logo m-4">뉴스 최신</h1>
+                    <table class="table tb">
+                        <tr>
+                            <td>첫번째 뉴스</td>
+                            <td>11:51</td>
+                        </tr>
+                        <tr>
+                            <td>두번째 뉴스</td>
+                            <td>11:00</td>
+
+                        </tr>
+                        <tr>
+                            <td>세번째 뉴스</td>
+                            <td>10:51
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>네번째 뉴스</td>
+                            <td>09:01</td>
+
+                        </tr>
+                        <tr>
+                            <td>다섯번째 뉴스</td>
+                            <td>08:53</td>
+
+                        </tr>
+                        <tr>
+                            <td>여섯번째 뉴스</td>
+                            <td>08:11</td>
+                        </tr>
+                    </table>
             </div>
         </div>
     </th:block>

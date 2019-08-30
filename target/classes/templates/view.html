@@ -20,7 +20,7 @@
                 <div class="border rounded p-3 m-2">
                     <p th:text="${resultMap.CONTENT}"></p>
                     <div class="row col justify-content-center">
-                        <form onsubmit="return checkUser(this)">
+                        <form method="POST" onsubmit="return checkUser(this)">
                             <input type="hidden" name="flag" th:value="${flag.flag}">
                             <input type="hidden" name="userID" th:value="${idMap.ID}">
                             <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
@@ -34,7 +34,7 @@
 
                     <!-- 댓글창 -->
                     <div class="row m-1">
-                        <h5>댓글 </h5><span class="mx-3">0개</span>
+                        <h5>댓글 </h5>
                     </div>
                     <div class="form-row">
                         <table class="table">
@@ -45,29 +45,27 @@
                                 <th>-</th>
                             </tr>
                             <tr th:each="comment:${commentList}">
-                                <td th:text="${comment.ID}"></td>
-                                <td th:text="${comment.CONTENT}"></td>
-                                <td th:text="${comment.TIME}"></td>
-                                <td th:text="${comment.ID}"></td>
+                                <form method="POST">
+                                    <input type="hidden" name="flag" th:value="${flag.flag}">
+                                    <input type="hidden" name="userID" th:value="${idMap.ID}">
+                                    <input type="hidden" name="TIME" th:value="${comment.TIME}">
+                                    <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
+                                    <td name="commentID" th:text="${comment.ID}"></td>
+                                    <td th:text="${comment.CONTENT}"></td>
+                                    <td th:text="${comment.TIME}"></td>
+                                    <td th:if="${comment.ID==idMap.ID}"><input type="submit" class="btn btn-outline-secondary" value="삭제" name="submit"
+                                            th:formaction="@{/view}"></td>
+                                </form>
                             </tr>
                         </table>
-                        <div class="col">
-                            <!-- <input th:if="${resultMap.ID==idMap.ID}" name="submit" type="submit" value="수정"
-                                class="btn btn-outline-secondary">
-                            삭제 버튼
-                            <input type="submit" name="submit" value="삭제" class="btn btn-outline-secondary">
-                            <input
-                                th:if="${resultMap.ID==idMap.ID&&(resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna')}"
-                                th:formaction="${'/community/'+resultMap.CATEGORY}" type="submit" name="submit"
-                                value="삭제" class="btn btn-outline-secondary m-1"> -->
-                        </div>
                     </div>
                     <!-- 작성란&버튼 -->
                     <div class="col justify-content-center my-1 mx-0">
-                        <form class="row col justify-content-center" onsubmit="return checkUser(this)">
+                        <form method="POST" class="row col justify-content-center" onsubmit="return checkUser(this)">
                             <input type="hidden" name="flag" th:value="${flag.flag}">
-                            <input type="hidden" name="userID" th:value="${idMap.ID}"> <input type="text"
-                                class="col-10 form-control">
+                            <input type="hidden" name="userID" th:value="${idMap.ID}">
+                            <input type="hidden" name="POSTNUM" th:value="${resultMap.POSTNUM}">
+                            <input type="text" name="CONTENT" class="col-10 form-control">
                             <input type="submit" class="btn btn-secondary col-2" th:formaction="@{/view}" name="submit"
                                 value="댓글작성">
                         </form>

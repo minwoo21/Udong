@@ -34,6 +34,10 @@ public class BoardService{
         String sqlMapid="Board.deletePost";
         dao.deleteObject(sqlMapid,dataMap);
     } 
+    public void insertPost(Object dataMap){
+        String sqlMapid="Board.insertPost";
+        dao.deleteObject(sqlMapid,dataMap);
+    }
     public void addRecommend(Object dataMap){
         String sqlMapid="Board.addRecommend";
         dao.updateObject(sqlMapid,dataMap);
