@@ -47,7 +47,6 @@ public class HomeController {
     @Autowired
     private HomeService homeservice;
 
-    // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
             ModelAndView modelAndView) {
@@ -155,6 +154,9 @@ public class HomeController {
                 }
                 resultMap = (Map) boardservice.getPostOne(postNumMap);
             }
+        }
+
+        if("/club/introduce".equals(action)){
         }
 
         modelAndView.setViewName(viewName);
