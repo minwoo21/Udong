@@ -45,4 +45,14 @@ public class HomeService {
 
         return passed_resultObject;
     }
+
+    public Object getNewlylist(Object dataMap) {
+
+        String sqlMapid = "fetchbyinterest_ifparamNull";
+        Object resultObject = dao.getList(sqlMapid, dataMap);
+
+        int recordsnum = ((ArrayList<HashMap<String, Object>>) resultObject).size();
+
+        return resultObject;
+    }
 }

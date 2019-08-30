@@ -13,4 +13,8 @@
 	    select * from CLUB
         where INTEREST = '교양' order by RECOMMEND DESC
     </select>
+    <select id="fetchnewlylist" resultType="Map" parameterType="Map">
+        select * from CLUB
+        order by TIME DESC
+    </select>
 </mapper>

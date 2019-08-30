@@ -15,4 +15,9 @@ public class HomeDao {
         return resultObject;
     }
 
+    public Object getNewboardlist(String sqlMapId, Object dataMap) {
+        Object resultObject = sqlSession.selectList(sqlMapId, dataMap);
+        return resultObject;
+    }
+
 }
