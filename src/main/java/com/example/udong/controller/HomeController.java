@@ -5,12 +5,14 @@ import java.util.Map;
 
 import com.example.udong.service.AreaService;
 import com.example.udong.service.BoardService;
+import com.example.udong.service.HomeService;
 import com.example.udong.service.InterestCategoryService;
 import com.example.udong.service.MemberService;
 import com.example.udong.util.MemberBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +36,9 @@ public class HomeController {
     @Autowired
     private AreaService areaservice;
 
-    
+    @Autowired
+    private HomeService homeservice;
+
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
@@ -71,6 +75,7 @@ public class HomeController {
             modelAndView.addObject("idCheck", false);
         } else if ("home".equals(action)) {
             if (!paramMap.keySet().contains("submit")) {// home으로 가려할 때
+                resultList = homeservice.get(paramMap);
                 viewName = "/home";
             } else {
                 Object submitValue = paramMap.get("submit");
@@ -118,24 +123,23 @@ public class HomeController {
 
                 // resultList = commentservice.getComment(paramMap);
                 modelAndView.addObject("commentList", resultList);
-                
+
                 resultMap = (Map) boardservice.getPostOne(postNumMap);
             } else {
                 Object submitValue = paramMap.get("submit");
                 if (submitValue.equals("댓글작성")) { // 댓글작성시
                     // resultMap = (Map) service.getMember(paramMap);
                     // if (resultMap.size() != 0) {
-                    //     flagMap.put("flag", true);
-                    //     idMap.put("ID", paramMap.get("ID"));
+                    // flagMap.put("flag", true);
+                    // idMap.put("ID", paramMap.get("ID"));
                     // } else {
-                    //     flagMap.put("flag", false);
-                    //     viewName = "/login";
+                    // flagMap.put("flag", false);
+                    // viewName = "/login";
                     // }
-                }else if(submitValue.equals("추천")){
-                    if(boardservice.isRecommend(paramMap)!=null){
+                } else if (submitValue.equals("추천")) {
+                    if (boardservice.isRecommend(paramMap) != null) {
                         boardservice.subRecommend(paramMap);
-                    }
-                    else{
+                    } else {
                         boardservice.addRecommend(paramMap);
                     }
                 }
@@ -146,6 +150,7 @@ public class HomeController {
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.addObject("idMap", idMap);
         modelAndView.addObject("flag", flagMap);
+        modelAndView.addObject("resultList", resultList);
         return modelAndView;
     }
 
