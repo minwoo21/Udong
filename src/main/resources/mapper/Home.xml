@@ -9,4 +9,7 @@
 	    select * from CLUB
         order by RECOMMEND DESC
     </select>
+    <select id="editor_pick" resultType="Map" parameterType="Map">
+	    select * from CLUB
+    </select>
 </mapper>

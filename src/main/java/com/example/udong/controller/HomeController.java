@@ -144,6 +144,7 @@ public class HomeController {
                 resultMap = (Map) boardservice.getPostOne(postNumMap);
             }
         }
+
         modelAndView.setViewName(viewName);
         modelAndView.addObject("paramMap", paramMap);
         modelAndView.addObject("resultMap", resultMap);
