@@ -11,4 +11,4 @@
 #
 #
 ### 화면 정의서
-<img src="./src/main/resources/portfolio/화면정의서.png" width="100%">
+<img src="../src/main/resources/portfolio/화면정의서.png" width="100%">
