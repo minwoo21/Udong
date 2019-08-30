@@ -141,6 +141,7 @@ public class HomeController {
                 }
             }
         }
+
         modelAndView.setViewName(viewName);
         modelAndView.addObject("paramMap", paramMap);
         modelAndView.addObject("resultMap", resultMap);
