@@ -48,8 +48,4 @@
 		delete from BOARD
 		where POSTNUM=#{POSTNUM};
 	</delete>
-	<delete id="deleteRecommend" parameterType="Map">
-		delete from RECOMMEND
-		where ID=#{ID} and POSTNUM=#{POSTNUM};
-	</delete>
 </mapper>

@@ -1,6 +1,5 @@
 package com.example.udong.service;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,30 +10,26 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
-public class RecommendService{
+public class RecommendService {
 
-    @Autowired
-    private RecommendRepository repository;
-    
-    @Autowired
-    private MemberDao dao;
+  @Autowired
+  private RecommendRepository repository;
 
+  @Autowired
+  private MemberDao dao;
 
-    public Object getList(Object dataMap) {
-		String sqlMapId = "Faq.list";
+  public Object isRecommend(Object dataMap) {
+    String sqlMapid = "Recommend.isRecommend";
+    Object resultObject = dao.getList(sqlMapid, dataMap);
+    return resultObject;
+  }
+  public void subRecommend(Object dataMap){
+    String sqlMapid = "Recommend.subRecommend";
+    dao.updateObject(sqlMapid, dataMap);
+  }
+  public void addRecommend(Object dataMap){
+    String sqlMapid = "Recommend.insertRecommend";
+    dao.updateObject(sqlMapid, dataMap);
+  }
 
-		Object resultObject = new HashMap<>();
-		// ((Map<String, Object>) resultObject).put("resultList", dao.getList(sqlMapId,
-		// dataMap));
-		((Map<String, Object>) resultObject).put("resultList", repository.findAll());
-
-		return resultObject;
-    }
-    
-    public Object getObject(Object dataMap){
-        String sqlMapid = "Faq.read";
-        Object resultObject = dao.getObject(sqlMapid,dataMap);
-        return resultObject;
-    }
-    
 }
