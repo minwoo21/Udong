@@ -31,10 +31,22 @@ INSERT INTO MEMBER_INTEREST (ID, NAME) VALUES ('ID 08', 'NAME 08');
 INSERT INTO MEMBER_INTEREST (ID, NAME) VALUES ('ID 09', 'NAME 09');
 INSERT INTO MEMBER_INTEREST (ID, NAME) VALUES ('ID 10', 'NAME 10');
 
-INSERT INTO FAQ (TITLE, CONTENT) VALUES ('TITLE 01', 'CONTENT 01');
-INSERT INTO FAQ (TITLE, CONTENT) VALUES ('TITLE 02', 'CONTENT 02');
-INSERT INTO FAQ (TITLE, CONTENT) VALUES ('TITLE 03', 'CONTENT 03');
-INSERT INTO FAQ (TITLE, CONTENT) VALUES ('TITLE 04', 'CONTENT 04');
+INSERT INTO FAQ (TITLE, CONTENT) 
+VALUES ('Q1. 회원가입은 어떻게 하나요?', 
+'웹페이지 혹은 스마트폰 등을 통해, 우동 홈페이지와 App에서 모두 손쉽게 가입할 수 있으며 3가지 방법으로 가입이 가능합니다.
+[3가지 가입 방법]
+- 페이스북 계정이 있는 경우, [페이스북으로 연결하기]를 클릭하시면 손쉽게 회원가입 할 수 있습니다.
+- 카카오톡 계정이 있는 경우, [카카오톡으로 연결하기]를 클릭하시면 손쉽게 회원가입 할 수 있습니다.
+- 혹은, 이메일 주소와 패스워드만 입력하셔도 가입이 가능합니다.');
+INSERT INTO FAQ (TITLE, CONTENT) 
+VALUES ('Q2. 비회원도 우동을 이용할 수 있나요?', 
+'프립 신청은 회원 가입을 통해서만 가능합니다. 프립 회원으로 가입하시면 새로운 프립과 이벤트 소식을 받아보실 수 있으며 다양한 혜택을 누리실 수 있습니다.');
+INSERT INTO FAQ (TITLE, CONTENT) 
+VALUES ('Q3. 우동은 무엇인가요?', '우동이란 [우리들의 동아리]의 준말입니다. 우동은 사람들을 모아 다양한 종류의 동아리를 함께 즐기고 소통하며 더 행복한 삶을 살 수 있게 도와주는 서비스 플랫폼입니다.
+지친 일상 속에서 우동을 통해 활력을 찾아보시길 바랍니다.
+');
+INSERT INTO FAQ (TITLE, CONTENT) 
+VALUES ('Q4. 동아리의 추천수 랭킹을 알고 싶어요', '상단 메뉴바에서 동아리 버튼 클릭 후 랭킹 버튼을 누르면 추천 수 상위 10개의 동아리를 확인할 수 있습니다.');
 
 INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NAME, CONTENT, ID, CLUB_NUM, INTEREST, RECOMMEND) VALUES ('CLUB_NAME 01', 'INTRO 01', 'AREA_NAME 01', 'CONTENT 01', 'ID 01', 01, 'INTEREST 01', 01);
 INSERT INTO CLUB (CLUB_NAME, INTRO, AREA_NAME, CONTENT, ID, CLUB_NUM, INTEREST, RECOMMEND) VALUES ('CLUB_NAME 02', 'INTRO 02', 'AREA_NAME 02', 'CONTENT 02', 'ID 02', 02, 'INTEREST 02', 02);
@@ -80,16 +92,16 @@ INSERT INTO CLUB_MEMBER (CLUB_NUM, ID) VALUES (08, 'ID 08');
 INSERT INTO CLUB_MEMBER (CLUB_NUM, ID) VALUES (09, 'ID 09');
 INSERT INTO CLUB_MEMBER (CLUB_NUM, ID) VALUES (10, 'ID 10');
 
-INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), 'TITLE 01', 'ID 01', 'CONTENT 01', 'EMAIL 01');
-INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), 'TITLE 02', 'ID 02', 'CONTENT 02', 'EMAIL 02');
-INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), 'TITLE 03', 'ID 03', 'CONTENT 03', 'EMAIL 03');
-INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), 'TITLE 04', 'ID 04', 'CONTENT 04', 'EMAIL 04');
-INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), 'TITLE 05', 'ID 05', 'CONTENT 05', 'EMAIL 05');
-INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), 'TITLE 06', 'ID 06', 'CONTENT 06', 'EMAIL 06');
-INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), 'TITLE 07', 'ID 07', 'CONTENT 07', 'EMAIL 07');
-INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), 'TITLE 08', 'ID 08', 'CONTENT 08', 'EMAIL 08');
-INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), 'TITLE 09', 'ID 09', 'CONTENT 09', 'EMAIL 09');
-INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), 'TITLE 10', 'ID 10', 'CONTENT 10', 'EMAIL 10');
+INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), '질문을 했는데 답변이 없습니다.', 'hjdjl7', '질문한지 1년이 지났는데 답이 없습니다. ', 'hjdjl7@naver.com');
+INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), '랭킹 1위 동아리 상금 있나요?', 'joojoo', '랭킹 1위 동아리에 선정되었는데 상금은 없나요?', 'joojoo@gmail.com');
+INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), '랭킹 꼴찌 동아리 후원금 있나요?', 'chadoli', '랭킹 꼴찌에 당첨되었는데 후원금 없슘니까', 'chadoli@naver.com');
+INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), '웹 개발자가 누군가요?', 'hyunjoo', '웹 사이트 잘만드셨군요', 'hyunjoo@gmail.com');
+INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), '웹사이트가 깰끔한가요?', 'gondue', '아주 깔끔합니당', 'gondue@naver.com');
+INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), '마이페이지를 찾을 수 없습니다.', 'jjang', '만들지 않았기 때문이죠', 'jjang@gmail.com');
+INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), '이현주가 누구인가요?', 'zaza', '접니다요', 'zaza@naver.com');
+INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), '아이 해브 어 퀘스쳔', 'zago5', 'i have a question', 'zago@naver.com');
+INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), '동아리 개설 어떻게 하나요?', 'sipo555', '동아리 개설 페이지를 찾을 수 없는 데 어디있나요?', 'sipo555@gmail.com');
+INSERT INTO QNA (TIME, TITLE, ID, CONTENT, EMAIL) VALUES (NOW(), '질문 있슘다.', 'sleepy22', '제가 바로 질문이 있다구요!', 'sleepy22@naver.com');
 
 INSERT INTO CATEGORY (NUM, NAME) VALUES (01, 'NAME 01');
 INSERT INTO CATEGORY (NUM, NAME) VALUES (02, 'NAME 02');
