@@ -1,24 +1,82 @@
 <div xmlns:th="http://www.thymeleaf.org" layout:decorator="layout/defaultLayout">
     <th:block layout:fragment="layout.content">
-        <!--사이드바-->
-        <div th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
-            <th:block th:replace="fragments/boardNav"></th:block>
-        </div>
-        <div th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">
-            <th:block th:replace="fragments/clubBoardNav"></th:block>
-        </div>
-        <!--글 읽기 페이지-->
-        <div class="row border rounded p-3 m-2 justify-content-between">
-            <div class="col-6" th:text="${resultMap.TITLE}"></div>
-            <div class="col-6 text-right" th:text="${resultMap.TIME}"></div>
-        </div>
-        <div class="border rounded p-3 m-2">
-            <p th:text="${resultMap.CONTENT}"></p>
-        </div>
-        <div class="justify-content-end row m-3">
-            <input type="submit" value="수정" class="btn btn-outline-secondary m-1">
-            <input type="submit" value="삭제" class="btn btn-outline-secondary m-1">
-            <input type="submit" value="목록으로" class="btn btn-secondary m-1">
+        <div class="row">
+            <!--사이드바-->
+            <div class="col-lg-2 col-md-12 col-sm-12 " th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}">
+                <th:block th:replace="fragments/boardNav"></th:block>
+            </div>
+            <div class="col-lg-2 col-md-12 col-sm-12 "
+                th:if="${resultMap.CATEGORY=='event'||resultMap.CATEGORY=='notice'}">
+                <th:block th:replace="fragments/newsNav"></th:block>
+            </div>
+
+            <!--글 읽기 페이지-->
+            <div class="col-lg-8 col-sm-12 col-md-12">
+                <div class="row border rounded p-3 m-2 justify-content-between">
+                    <div class="col-1" th:text="${resultMap.POSTNUM}"></div>
+                    <div class="col-4" th:text="${resultMap.TITLE}"></div>
+                    <div class="col-6 text-right" th:text="${resultMap.TIME}"></div>
+                </div>
+                <div class="border rounded p-3 m-2">
+                    <p th:text="${resultMap.CONTENT}"></p>
+                    <div class="row col justify-content-center">
+                        <input type="submit" class="btn btn-outline-danger" th:formaction="@{/view}"name="submit" value="추천">
+                    </div>
+                </div>
+                <div class="border rounded p-3 m-2">
+                    <!-- 댓글창 -->
+                    <div class="row m-1">
+                        <h5>댓글 </h5><span class="mx-3">0개</span>
+                    </div>
+                    <div class="form-row">
+                        <div class="border rounded p-2 m-2 row text-left">
+                            <!-- <div th:each="comment:${commentList}">
+                                <div class="col-2 p-1" th:text="${comment.ID}"></div>
+                                <div class="col-7 p-1" th:text="${comment.CONTENT}"></div>
+                                <div class="col-3 p-1 text-right" th:text="${comment.TIME}"></div>
+                                <div class="m-2">
+                                    <input th:if="${resultMap.ID==idMap.ID}" name="submit" type="submit" value="수정"
+                                        class="btn btn-outline-secondary">
+                                    삭제 버튼
+                                    <input type="submit" name="submit" value="삭제" class="btn btn-outline-secondary">
+                                    <input
+                                        th:if="${resultMap.ID==idMap.ID&&(resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna')}"
+                                        th:formaction="${'/community/'+resultMap.CATEGORY}" type="submit" name="submit"
+                                        value="삭제" class="btn btn-outline-secondary m-1">
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- 작성란&버튼 -->
+                        <div class="row col justify-content-center my-1 mx-0">
+                            <form class="row col justify-content-center" onsubmit="return checkUser(this)">
+                                <input type="hidden" name="userID" th:value="${idMap.ID}">
+                                <input type="text" class="col-10 form-control">
+                                <input type="submit" class="btn btn-secondary col-2" th:formaction="@{/view}"
+                                    name="submit" value="댓글작성">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="justify-content-end row m-3">
+                    <input th:if="${resultMap.ID==idMap.ID}" name="submit" type="submit" value="수정"
+                        class="btn btn-outline-secondary m-1">
+                    <!--삭제 버튼-->
+                    <input
+                        th:if="${resultMap.ID==idMap.ID&&(resultMap.CATEGORY=='notice'||resultMap.CATEGORY=='event')}"
+                        th:formaction="${'/news/'+resultMap.CATEGORY}" type="submit" name="submit" value="삭제"
+                        class="btn btn-outline-secondary m-1">
+                    <input th:if="${resultMap.ID==idMap.ID&&(resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna')}"
+                        th:formaction="${'/community/'+resultMap.CATEGORY}" type="submit" name="submit" value="삭제"
+                        class="btn btn-outline-secondary m-1">
+                    <!--목록으로 버튼-->
+                    <input type="submit" value="목록으로" class="btn btn-secondary m-1"
+                        th:if="${resultMap.CATEGORY=='free'||resultMap.CATEGORY=='qna'}"
+                        th:formaction="${'/community/'+resultMap.CATEGORY}">
+                    <input type="submit" value="목록으로" class="btn btn-secondary m-1"
+                        th:if="${resultMap.CATEGORY=='notice'||resultMap.CATEGORY=='event'}"
+                        th:formaction="${'/news/'+resultMap.CATEGORY}">
+                </div>
+            </div>
         </div>
     </th:block>
 </div>

@@ -29,6 +29,6 @@ public class MemberService{
     }
     public void deleteMember(Object dataMap){
         String sqlMapid = "Member.delete";
-        Object resultObject = dao.deleteObject(sqlMapid, dataMap);
+        dao.deleteObject(sqlMapid, dataMap);
     }
 }
