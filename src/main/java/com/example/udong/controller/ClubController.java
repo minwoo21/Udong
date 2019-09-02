@@ -19,6 +19,7 @@ public class ClubController {
 
     @Autowired
     private RankingService service;
+    @Autowired
     private ClubService service2;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
@@ -36,9 +37,9 @@ public class ClubController {
         }
         Map<String, Object> idMap = new HashMap<String, Object>();
 
-        if(paramMap.get("userID")==null)
+        if (paramMap.get("userID") == null)
             idMap.put("ID", "");
-        else   
+        else
             idMap.put("ID", paramMap.get("userID"));
 
         // divided depending on action value
@@ -57,6 +58,9 @@ public class ClubController {
         } else if ("introduce".equals(action)) {
 
         } else if ("clubBoard".equals(action)) {
+
+        } else if ("ranking".equals(action)) {
+            resultMap = service.get(paramMap);
         }
 
         String viewName = "/club/" + action;

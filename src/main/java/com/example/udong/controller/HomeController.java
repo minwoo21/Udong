@@ -5,12 +5,16 @@ import java.util.Map;
 
 import com.example.udong.service.AreaService;
 import com.example.udong.service.BoardService;
+import com.example.udong.service.HomeService;
+import com.example.udong.service.CommentService;
 import com.example.udong.service.InterestCategoryService;
 import com.example.udong.service.MemberService;
+import com.example.udong.service.RecommendService;
 import com.example.udong.util.MemberBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,8 +36,17 @@ public class HomeController {
     private BoardService boardservice;
 
     @Autowired
+    private RecommendService recommendservice;
+
+    @Autowired
+    private CommentService commentservice;
+
+    @Autowired
     private AreaService areaservice;
-    // Receive Parameters from Html Using @RequestParam Map with @PathVariable
+
+    @Autowired
+    private HomeService homeservice;
+
     @RequestMapping(value = "/{action}", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView actionMethod(@RequestParam Map<String, Object> paramMap, @PathVariable String action,
             ModelAndView modelAndView) {
@@ -49,12 +62,12 @@ public class HomeController {
         else {
             flagMap.put("flag", paramMap.get("flag"));
         }
-        
+
         Map<String, Object> idMap = new HashMap<String, Object>();
 
-        if(paramMap.get("userID")==null)
+        if (paramMap.get("userID") == null)
             idMap.put("ID", "");
-        else   
+        else
             idMap.put("ID", paramMap.get("userID"));
 
         // divided depending on action value
@@ -69,6 +82,7 @@ public class HomeController {
             modelAndView.addObject("idCheck", false);
         } else if ("home".equals(action)) {
             if (!paramMap.keySet().contains("submit")) {// home으로 가려할 때
+                resultList = homeservice.get(paramMap);
                 viewName = "/home";
             } else {
                 Object submitValue = paramMap.get("submit");
@@ -76,7 +90,7 @@ public class HomeController {
                     resultMap = (Map) service.getMember(paramMap);
                     if (resultMap.size() != 0) {
                         flagMap.put("flag", true);
-                        idMap.put("ID",paramMap.get("ID"));
+                        idMap.put("ID", paramMap.get("ID"));
                     } else {
                         flagMap.put("flag", false);
                         viewName = "/login";
@@ -99,26 +113,62 @@ public class HomeController {
                         viewName = "/signup";
                     }
                     modelAndView.addObject("resultBean", paramMap);
-                }else if(submitValue.equals("회원탈퇴")){
-                    service.deleteMember(paramMap);
+                } else if (submitValue.equals("회원탈퇴")) {
+                    service.deleteMember(idMap);
                     flagMap.put("flag", false);
                     idMap.put("ID", "");
                 }
             }
         } else if ("post".equals(action)) {
-
-        }else if("view".equals(action)){
+            
+        } else if ("view".equals(action)) {
             Map<String, Object> postNumMap = new HashMap<String, Object>();
-            String postNumString = (String)paramMap.get("POSTNUM");
-            postNumString = postNumString.split(" ")[0];
-            postNumMap.put("POSTNUM",postNumString );
-            resultMap = (Map)boardservice.getPostOne(postNumMap);
+            if (paramMap.get("POSTNUM") != null) {
+                String postNumString = (String) paramMap.get("POSTNUM");
+                postNumString = postNumString.split(" ")[0];
+                postNumMap.put("POSTNUM", postNumString);
+                paramMap.put("POSTNUM", postNumString);
+            }
+            if (!paramMap.keySet().contains("submit")) {// view로 가려할 때
+                resultMap = (Map) boardservice.getPostOne(postNumMap);
+            } else {
+                Object submitValue = paramMap.get("submit");
+                if (submitValue.equals("댓글작성")) { // 댓글작성시
+                    commentservice.insertComment(paramMap);
+
+                } else if (submitValue.equals("추천")) {
+                    Map x = (Map) recommendservice.isRecommend(paramMap);
+                    if (x == null) {
+                        recommendservice.addRecommend(paramMap);
+                        Integer y = recommendservice.countRecommend(paramMap);
+                        paramMap.put("RECOMMEND", y);
+                        boardservice.addRecommend(paramMap);
+                    } else {
+                        recommendservice.subRecommend(paramMap);
+                        Integer y = recommendservice.countRecommend(paramMap);
+                        paramMap.put("RECOMMEND", y);
+                        boardservice.subRecommend(paramMap);
+                    }
+                } else if (submitValue.equals("삭제")) {
+                    commentservice.deleteComment(paramMap);
+                }
+                resultMap = (Map) boardservice.getPostOne(postNumMap);
+            }
+
+            // 댓글 목록 불러오기
+            Object CommentList = commentservice.getComment(postNumMap);
+            modelAndView.addObject("commentList", CommentList);
         }
+
+        if("/club/introduce".equals(action)){
+        }
+
         modelAndView.setViewName(viewName);
         modelAndView.addObject("paramMap", paramMap);
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.addObject("idMap", idMap);
         modelAndView.addObject("flag", flagMap);
+        modelAndView.addObject("resultList", resultList);
         return modelAndView;
     }
 

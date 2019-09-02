@@ -2,13 +2,16 @@
     <th:block layout:fragment="layout.content">
         <div class="row">
             <!--사이드바-->
-            <th:block th:replace="fragments/boardNav"></th:block>
+            <div class="col-lg-2 col-md-12 col-sm-12 ">
+                <th:block th:replace="fragments/boardNav"></th:block>
+            </div>
             <div class="col-lg-8 col-md-12 col-sm-12  m-3 p-2  row">
                 <h1>자유게시판</h1>
                 <div class="col-12 row my-3 justify-content-between">
-                    <input type="text" formaction="" class="form-control col-7">
-                    <input type="submit" value="검색" formaction="" class="btn px-2 col-2 btn-outline-dark">
-                    <input type="submit" value="글쓰기" th:formaction="@{/post}" class="btn px-2 col-2 btn-secondary">
+                    <input type="text" name="search" th:value="${paramMap.search}" class="form-control col-7">
+                    <input type="submit" name="submit" value="검색" th:formaction="@{/community/free}" class="btn px-2 col-2 btn-outline-dark">
+                    <input type="submit" name="submit" value="글쓰기" th:formaction="@{/post}" class="btn px-2 col-2 btn-secondary">
+                    <input type="hidden" name="CATEGORY" value="free">
                 </div>
                 <!--리스트-->
                 <table class="table table-hover tb text-center">
@@ -23,7 +26,7 @@
                     <tbody>
                         <tr th:each="post:${resultList}">
                             <td><input type="submit" class="btn" name="POSTNUM"
-                                th:value="${post.POSTNUM +' '+ post.TITLE}" th:formaction="@{/view}"></td>
+                                    th:value="${post.POSTNUM +' '+ post.TITLE}" th:formaction="@{/view}"></td>
                             <td th:text="${post.ID}"></td>
                             <td th:text="${post.TIME}"></td>
                             <td th:text="${post.RECOMMEND}"></td>

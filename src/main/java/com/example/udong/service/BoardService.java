@@ -25,4 +25,25 @@ public class BoardService{
         Object resultObject = dao.getObject(sqlMapid,dataMap);
         return resultObject;
     }
+    public Object getSearchPost(Object dataMap){
+        String sqlMapid="Board.searchPost";
+        Object resultObject = dao.getList(sqlMapid,dataMap);
+        return resultObject;
+    }
+    public void deletePost(Object dataMap){
+        String sqlMapid="Board.deletePost";
+        dao.deleteObject(sqlMapid,dataMap);
+    } 
+    public void insertPost(Object dataMap){
+        String sqlMapid="Board.insertPost";
+        dao.deleteObject(sqlMapid,dataMap);
+    }
+    public void addRecommend(Object dataMap){
+        String sqlMapid="Board.addRecommend";
+        dao.updateObject(sqlMapid,dataMap);
+    }
+    public void subRecommend(Object dataMap){
+        String sqlMapid="Board.subRecommend";
+        dao.updateObject(sqlMapid,dataMap);
+    }
 }

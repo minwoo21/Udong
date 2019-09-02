@@ -80,3 +80,37 @@ function check(form) {
     }
     return flag;
 }
+
+
+function checkUser(form) {
+    var userID = form.userID.value;
+    if (userID == "") {
+        alert("로그인이 필요합니다.");
+        return false;
+    }
+}
+
+function checkAdmin(form){
+    var goodURL  = "/admin/answer"  //이곳에 인증이 되었을때 이동할 페이지  입력
+    alert("패스워드를 입력하셔야 합니다.")
+
+    var password =  prompt("PASSWD 입력","")
+
+    if (password == null)  {
+        alert("출입금지")
+        location  = "/home"         // 실패시 이동 주소       history.back();를 넣어도 됨
+    }
+    else  {
+        var  combo =  password
+        var  total =  combo.toLowerCase()
+
+    if  (total == "1234")  {                // 비밀번호
+        alert("안녕하세요...어서오십시요...")
+        location  =  goodURL
+    }
+    else  {
+        alert("출입금지")
+        location  = "/home"    // 실패시 이동 주소      history.back();를 넣어도 됨
+    }
+}
+}

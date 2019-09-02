@@ -3,6 +3,9 @@ package com.example.udong.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.example.udong.service.BoardService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class NewsController {
+    @Autowired
+    BoardService boardservice;
 
     // Receive Parameters from Html Using @RequestParam Map with @PathVariable
     @RequestMapping(value = "/news/{action}", method = { RequestMethod.GET, RequestMethod.POST })
@@ -20,24 +25,52 @@ public class NewsController {
 
         Object resultMap = new HashMap<String, Object>();
         Map<String, Object> flagMap = new HashMap<String, Object>();
+        Object resultList = new Object();
 
         if (paramMap.get("flag") == null)
             flagMap.put("flag", false);
-        else{
+        else {
             flagMap.put("flag", paramMap.get("flag"));
         }
         Map<String, Object> idMap = new HashMap<String, Object>();
 
-        if(paramMap.get("userID")==null)
+        if (paramMap.get("userID") == null)
             idMap.put("ID", "");
-        else   
+        else
             idMap.put("ID", paramMap.get("userID"));
 
+        paramMap.put("search", "");
         // divided depending on action value
         if ("notice".equals(action)) {
             // notice logic
+            if (!paramMap.keySet().contains("submit")) {
+                // 전체 목록 불러오기
+                Map<String, Object> category = new HashMap<String, Object>();
+                category.put("CATEGORY", "notice");
+                resultList = boardservice.getPost(category);
+            } else {
+                Object submitValue = paramMap.get("submit");
+                if (submitValue.equals("검색")) {
+                    // 검색 기능
+                    paramMap.put("CATEGORY", "notice");
+                    resultList = boardservice.getSearchPost(paramMap);
+                }
+            }
         } else if ("event".equals(action)) {
             // event logic
+            if (!paramMap.keySet().contains("submit")) {
+                // 전체 목록 불러오기
+                Map<String, Object> category = new HashMap<String, Object>();
+                category.put("CATEGORY", "event");
+                resultList = boardservice.getPost(category);
+            } else {
+                Object submitValue = paramMap.get("submit");
+                if (submitValue.equals("검색")) {
+                    // 검색 기능
+                    paramMap.put("CATEGORY", "event");
+                    resultList = boardservice.getSearchPost(paramMap);
+                }
+            }
         }
 
         String viewName = "/news/" + action;
@@ -46,6 +79,7 @@ public class NewsController {
 
         modelandView.addObject("paramMap", paramMap);
         modelandView.addObject("resultMap", resultMap);
+        modelandView.addObject("resultList", resultList);
         modelandView.addObject("idMap", idMap);
         modelandView.addObject("flag", flagMap);
         return modelandView;

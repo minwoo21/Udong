@@ -24,22 +24,14 @@ CREATE TABLE CLUB
 ALTER TABLE CLUB COMMENT '동아리';
 
 
-
--- CLUB Table Create SQL
 CREATE TABLE MEMBER
 (
-    `ID`         VARCHAR
-(45)    NOT NULL    COMMENT '아이디', 
-    `AREA_NAME`  VARCHAR
-(45)    NULL        COMMENT '지역', 
-    `TEL`        VARCHAR
-(45)    NULL        COMMENT '휴대폰번호', 
-    `PASSWORD`   VARCHAR
-(45)    NULL        COMMENT '비밀번호', 
-    `NAME`       VARCHAR
-(45)    NULL        COMMENT '이름', 
-    PRIMARY KEY
-(ID)
+    `ID`         VARCHAR(45)    NOT NULL    COMMENT '아이디', 
+    `AREA_NAME`  VARCHAR(45)    NULL        COMMENT '지역', 
+    `TEL`        VARCHAR(45)    NULL        COMMENT '휴대폰번호', 
+    `PASSWORD`   VARCHAR(45)    NULL        COMMENT '비밀번호', 
+    `NAME`       VARCHAR(45)    NULL        COMMENT '이름', 
+    PRIMARY KEY(ID)
 );
 
 ALTER TABLE MEMBER COMMENT '멤버';
@@ -169,4 +161,22 @@ CREATE TABLE QNA
 
 ALTER TABLE QNA COMMENT 'QNA';
 
+CREATE TABLE COMMENT
+(
+    `ID`        VARCHAR(45)    NULL        COMMENT '아이디', 
+    `POST_NUM`  INT    NULL        COMMENT '글번호', 
+    `CONTENT`   VARCHAR(45)    NULL        COMMENT '내용', 
+    `TIME`      TIMESTAMP      NULL        COMMENT '작성시간', 
+    `CO_NUM`    INT            NOT NULL    AUTO_INCREMENT COMMENT '댓글번호', 
+    PRIMARY KEY (CO_NUM)
+);
 
+ALTER TABLE COMMENT COMMENT '댓글';
+
+CREATE TABLE RECOMMEND
+(
+    `ID`        VARCHAR(45)    NULL        COMMENT '아이디', 
+    `POST_NUM`  VARCHAR(45)    NULL        COMMENT '글번호'
+);
+
+ALTER TABLE RECOMMEND COMMENT '추천';
